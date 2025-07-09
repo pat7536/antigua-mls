@@ -8,9 +8,20 @@ export default function PropertyCard({ property }) {
   const bathrooms = fields.Baths;
   const sqft = fields.SquareFootage;
   const propertyType = fields.PropertyType;
+  const propertyURL = fields['Property URL'];
+
+  const handleCardClick = () => {
+    if (propertyURL) {
+      window.open(propertyURL, '_blank');
+    }
+  };
 
   return (
-    <div className="card">
+    <div 
+      className="card clickable-card" 
+      onClick={handleCardClick}
+      style={{ cursor: propertyURL ? 'pointer' : 'default' }}
+    >
       <div className="card-image">
         {thumbnail ? (
           <img src={thumbnail} alt={title} />
