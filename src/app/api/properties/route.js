@@ -13,24 +13,29 @@ export async function GET() {
       );
     }
 
-    const response = await fetch(
-      `https://api.airtable.com/v0/${baseId}/${tableName}`,
-      {
+    let allProperties = [];
+    let offset = null;
+
+    do {
+      const url = `https://api.airtable.com/v0/${baseId}/${tableName}${offset ? `?offset=${offset}` : ''}`;
+      
+      const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
         },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Airtable API error: ${response.status}`);
       }
-    );
 
-    if (!response.ok) {
-      throw new Error(`Airtable API error: ${response.status}`);
-    }
+      const data = await response.json();
+      allProperties = allProperties.concat(data.records);
+      offset = data.offset;
+    } while (offset);
 
-    const data = await response.json();
-    const properties = data.records;
-
-    return NextResponse.json({ properties });
+    return NextResponse.json({ properties: allProperties });
   } catch (error) {
     console.error('Error fetching properties:', error);
     return NextResponse.json(
