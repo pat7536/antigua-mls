@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import type { Property, AirtableResponse } from '@/types/property';
+import type { AirtableRecordId, PropertyId } from '@/types/branded';
 
 export async function GET() {
   try {
@@ -13,15 +15,15 @@ export async function GET() {
       );
     }
 
-    let allProperties = [];
-    let offset = null;
+    const allProperties: Property[] = [];
+    let offset: string | undefined = undefined;
 
     do {
       const url = `https://api.airtable.com/v0/${baseId}/${tableName}${offset ? `?offset=${offset}` : ''}`;
-      
+
       const response = await fetch(url, {
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
+          Authorization: `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
         },
       });
@@ -30,8 +32,15 @@ export async function GET() {
         throw new Error(`Airtable API error: ${response.status}`);
       }
 
-      const data = await response.json();
-      allProperties = allProperties.concat(data.records);
+      const data: AirtableResponse = await response.json();
+
+      // Transform Airtable records to our Property type
+      const transformedProperties: Property[] = data.records.map((record) => ({
+        id: record.id as unknown as PropertyId,
+        fields: record.fields,
+      }));
+
+      allProperties.push(...transformedProperties);
       offset = data.offset;
     } while (offset);
 

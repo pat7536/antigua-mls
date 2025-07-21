@@ -1,4 +1,16 @@
-export default function FilterBar({ filters, onFilterChange, onClearFilters }) {
+import type { PropertyFilters } from '@/types/property';
+
+type FilterBarProps = {
+  filters: PropertyFilters;
+  onFilterChange: (filterType: keyof PropertyFilters, value: string) => void;
+  onClearFilters: () => void;
+};
+
+export default function FilterBar({
+  filters,
+  onFilterChange,
+  onClearFilters,
+}: FilterBarProps) {
   const { bedrooms, priceRange, location } = filters;
 
   return (
@@ -6,13 +18,12 @@ export default function FilterBar({ filters, onFilterChange, onClearFilters }) {
       <div className="filter-section">
         <h3>Filter Properties</h3>
         <div className="filter-controls">
-          
           {/* Bedrooms Filter */}
           <div className="filter-group">
             <label htmlFor="bedrooms">Bedrooms</label>
-            <select 
+            <select
               id="bedrooms"
-              value={bedrooms} 
+              value={bedrooms}
               onChange={(e) => onFilterChange('bedrooms', e.target.value)}
               className="filter-select"
             >
@@ -28,9 +39,9 @@ export default function FilterBar({ filters, onFilterChange, onClearFilters }) {
           {/* Price Range Filter */}
           <div className="filter-group">
             <label htmlFor="priceRange">Price Range</label>
-            <select 
+            <select
               id="priceRange"
-              value={priceRange} 
+              value={priceRange}
               onChange={(e) => onFilterChange('priceRange', e.target.value)}
               className="filter-select"
             >
@@ -46,7 +57,7 @@ export default function FilterBar({ filters, onFilterChange, onClearFilters }) {
           {/* Location Filter */}
           <div className="filter-group">
             <label htmlFor="location">Location</label>
-            <input 
+            <input
               type="text"
               id="location"
               value={location}
@@ -58,10 +69,7 @@ export default function FilterBar({ filters, onFilterChange, onClearFilters }) {
 
           {/* Clear Filters Button */}
           <div className="filter-group">
-            <button 
-              onClick={onClearFilters}
-              className="clear-filters-btn"
-            >
+            <button onClick={onClearFilters} className="clear-filters-btn">
               Clear Filters
             </button>
           </div>

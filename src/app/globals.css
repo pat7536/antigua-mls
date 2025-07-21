@@ -5,7 +5,9 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
   line-height: 1.6;
   color: #333;
   background-color: #f9fafb;
@@ -59,7 +61,9 @@ body {
 
 .clickable-card {
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
 }
 
 .clickable-card:hover {
@@ -108,7 +112,8 @@ body {
   margin-bottom: 8px;
 }
 
-.card-location, .card-address {
+.card-location,
+.card-address {
   color: #6b7280;
   margin-bottom: 16px;
   display: flex;
@@ -158,8 +163,12 @@ body {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .error {
@@ -320,32 +329,32 @@ body {
   .container {
     padding: 0 16px;
   }
-  
+
   .header h1 {
     font-size: 1.5rem;
   }
-  
+
   .grid {
     grid-template-columns: 1fr;
   }
-  
+
   .card-content {
     padding: 16px;
   }
-  
+
   .card-details {
     gap: 12px;
   }
-  
+
   .filter-controls {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .filter-group {
     min-width: auto;
   }
-  
+
   .clear-filters-btn {
     margin-top: 8px;
   }

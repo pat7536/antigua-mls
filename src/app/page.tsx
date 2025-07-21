@@ -5,29 +5,35 @@ import PropertyCard from '../components/PropertyCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
 import FilterBar from '../components/FilterBar';
+import { applyPropertyFilters } from '@/lib/filters';
+import type {
+  Property,
+  PropertyFilters,
+  PropertiesApiResponse,
+} from '@/types/property';
 
 export default function Home() {
-  const [properties, setProperties] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [filters, setFilters] = useState({
+  const [properties, setProperties] = useState<Property[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [filters, setFilters] = useState<PropertyFilters>({
     bedrooms: '',
     priceRange: '',
-    location: ''
+    location: '',
   });
 
   const fetchProperties = async () => {
     try {
       setLoading(true);
       setError(null);
-      
+
       const response = await fetch('/api/properties');
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch properties');
       }
-      
-      const data = await response.json();
+
+      const data: PropertiesApiResponse = await response.json();
       setProperties(data.properties);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
@@ -36,49 +42,27 @@ export default function Home() {
     }
   };
 
-  const handleFilterChange = (filterType, value) => {
-    setFilters(prev => ({
+  const handleFilterChange = (
+    filterType: keyof PropertyFilters,
+    value: string
+  ): void => {
+    setFilters((prev) => ({
       ...prev,
-      [filterType]: value
+      [filterType]: value,
     }));
   };
 
-  const handleClearFilters = () => {
+  const handleClearFilters = (): void => {
     setFilters({
       bedrooms: '',
       priceRange: '',
-      location: ''
+      location: '',
     });
   };
 
+  // Following C-4: Using simple, composable, testable functions
   const filteredProperties = useMemo(() => {
-    return properties.filter(property => {
-      const { fields } = property;
-      
-      // Bedroom filter
-      if (filters.bedrooms && fields.Beds) {
-        const minBeds = parseInt(filters.bedrooms);
-        if (fields.Beds < minBeds) return false;
-      }
-      
-      // Price range filter
-      if (filters.priceRange && fields.Price) {
-        const [minPrice, maxPrice] = filters.priceRange.split('-').map(Number);
-        if (fields.Price < minPrice || fields.Price > maxPrice) return false;
-      }
-      
-      // Location filter
-      if (filters.location) {
-        const locationSearch = filters.location.toLowerCase();
-        const address = fields.Address?.toLowerCase() || '';
-        const location = fields.Location?.toLowerCase() || '';
-        if (!address.includes(locationSearch) && !location.includes(locationSearch)) {
-          return false;
-        }
-      }
-      
-      return true;
-    });
+    return applyPropertyFilters(properties, filters);
   }, [properties, filters]);
 
   useEffect(() => {
@@ -104,29 +88,50 @@ export default function Home() {
 
       <main className="main">
         <div className="container">
-          <FilterBar 
+          <FilterBar
             filters={filters}
             onFilterChange={handleFilterChange}
             onClearFilters={handleClearFilters}
           />
-          
+
           {filteredProperties.length === 0 ? (
             <div className="empty-state">
-              <svg className="empty-icon" width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              <svg
+                className="empty-icon"
+                width="64"
+                height="64"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                />
               </svg>
               <h2>No properties found</h2>
-              <p>Try adjusting your filters or check back later for new listings</p>
+              <p>
+                Try adjusting your filters or check back later for new listings
+              </p>
             </div>
           ) : (
             <>
               <div className="results-count">
-                {filteredProperties.length} {filteredProperties.length === 1 ? 'Property' : 'Properties'} Found
-                {(filters.bedrooms || filters.priceRange || filters.location) && (
-                  <span className="filter-indicator"> (filtered from {properties.length} total)</span>
+                {filteredProperties.length}{' '}
+                {filteredProperties.length === 1 ? 'Property' : 'Properties'}{' '}
+                Found
+                {(filters.bedrooms ||
+                  filters.priceRange ||
+                  filters.location) && (
+                  <span className="filter-indicator">
+                    {' '}
+                    (filtered from {properties.length} total)
+                  </span>
                 )}
               </div>
-              
+
               <div className="grid">
                 {filteredProperties.map((property) => (
                   <PropertyCard key={property.id} property={property} />
