@@ -6,6 +6,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
 import FilterBar from '../components/FilterBar';
 import SimpleMap from '../components/SimpleMap';
+import Header from '../components/Header';
 import { applyPropertyFilters } from '@/lib/filters';
 import type {
   Property,
@@ -80,12 +81,7 @@ export default function Home() {
 
   return (
     <div>
-      <header className="header">
-        <div className="container">
-          <h1>Antigua MLS</h1>
-          <p>Find your dream property in Antigua</p>
-        </div>
-      </header>
+      <Header />
 
       <main className="main">
         <div className="container">

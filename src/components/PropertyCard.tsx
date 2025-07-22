@@ -1,4 +1,5 @@
 import type { Property } from '@/types/property';
+import SavePropertyButton from './SavePropertyButton';
 
 type PropertyCardProps = {
   property: Property;
@@ -81,6 +82,14 @@ export default function PropertyCard({ property }: PropertyCardProps) {
             />
           </svg>
         )}
+        
+        {/* Save button positioned in top-right corner */}
+        <div 
+          className="absolute top-4 right-4"
+          onClick={(e) => e.stopPropagation()} // Prevent card click when clicking save button
+        >
+          <SavePropertyButton property={property} />
+        </div>
       </div>
 
       <div className="card-content">
