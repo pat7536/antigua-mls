@@ -1,3 +1,5 @@
+@import 'leaflet/dist/leaflet.css';
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -323,6 +325,13 @@ body {
   color: #6b7280;
   font-weight: normal;
   font-size: 0.9rem;
+}
+
+/* Map styles */
+.map-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {

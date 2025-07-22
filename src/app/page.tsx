@@ -5,6 +5,7 @@ import PropertyCard from '../components/PropertyCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
 import FilterBar from '../components/FilterBar';
+import SimpleMap from '../components/SimpleMap';
 import { applyPropertyFilters } from '@/lib/filters';
 import type {
   Property,
@@ -93,6 +94,13 @@ export default function Home() {
             onFilterChange={handleFilterChange}
             onClearFilters={handleClearFilters}
           />
+
+          <div style={{ marginBottom: '24px' }}>
+            <h2 style={{ marginBottom: '16px', fontSize: '1.25rem', fontWeight: '600', color: '#1f2937' }}>
+              Property Locations
+            </h2>
+            <SimpleMap properties={filteredProperties} />
+          </div>
 
           {filteredProperties.length === 0 ? (
             <div className="empty-state">

@@ -18,6 +18,8 @@ export type PropertyFields = {
   SquareFootage?: number;
   Status?: string;
   'Property URL'?: string;
+  Latitude?: number;
+  Longitude?: number;
 };
 
 export type PropertyFilters = {
