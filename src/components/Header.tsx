@@ -10,33 +10,35 @@ export default function Header() {
         <div className="flex justify-between items-center">
           <div>
             <Link href="/" className="no-underline">
-              <h1 className="text-2xl font-bold text-gray-900 mb-2">Antigua MLS</h1>
-              <p className="text-gray-600">Find your dream property in Antigua</p>
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                Antigua MLS
+              </h1>
+              <p className="text-gray-600">
+                Find your dream property in Antigua
+              </p>
             </Link>
           </div>
-          
+
           <div className="flex items-center gap-4">
             <SignedOut>
               <SignInButton mode="modal">
-                <button className="btn">
-                  Agent Sign In
-                </button>
+                <button className="btn">Agent Sign In</button>
               </SignInButton>
             </SignedOut>
-            
+
             <SignedIn>
-              <Link 
-                href="/dashboard" 
+              <Link
+                href="/dashboard"
                 className="text-blue-600 hover:text-blue-800 font-medium transition-colors"
               >
                 Dashboard
               </Link>
-              <UserButton 
+              <UserButton
                 afterSignOutUrl="/"
                 appearance={{
                   elements: {
-                    avatarBox: "w-8 h-8"
-                  }
+                    avatarBox: 'w-8 h-8',
+                  },
                 }}
               />
             </SignedIn>

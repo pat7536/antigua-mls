@@ -1,0 +1,3 @@
+Save the banner image as "antigua-banner.jpg" in this directory.
+
+The banner should be a high-quality image (recommended: 1920x800px) showing the beautiful Antigua coastline with luxury properties.

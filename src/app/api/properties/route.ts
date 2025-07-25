@@ -38,6 +38,7 @@ export async function GET() {
       const transformedProperties: Property[] = data.records.map((record) => ({
         id: record.id as unknown as PropertyId,
         fields: record.fields,
+        createdTime: record.createdTime,
       }));
 
       allProperties.push(...transformedProperties);

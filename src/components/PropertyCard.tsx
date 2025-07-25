@@ -82,9 +82,9 @@ export default function PropertyCard({ property }: PropertyCardProps) {
             />
           </svg>
         )}
-        
+
         {/* Save button positioned in top-right corner */}
-        <div 
+        <div
           className="absolute top-4 right-4"
           onClick={(e) => e.stopPropagation()} // Prevent card click when clicking save button
         >

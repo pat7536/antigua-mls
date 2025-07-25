@@ -7,7 +7,19 @@ import type { Property } from '@/types/property';
 // Dynamically import Leaflet to avoid SSR issues
 const DynamicMap = dynamic(() => import('./MapInner'), {
   ssr: false,
-  loading: () => <div style={{ height: '400px', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading map...</div>
+  loading: () => (
+    <div
+      style={{
+        height: '400px',
+        background: '#f0f0f0',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      Loading map...
+    </div>
+  ),
 });
 
 type MapProps = {

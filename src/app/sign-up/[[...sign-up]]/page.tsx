@@ -14,14 +14,14 @@ export default function SignUpPage() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <SignUp 
+          <SignUp
             appearance={{
               elements: {
                 formButtonPrimary: 'bg-blue-600 hover:bg-blue-700 text-sm',
                 card: 'shadow-none',
                 headerTitle: 'hidden',
-                headerSubtitle: 'hidden'
-              }
+                headerSubtitle: 'hidden',
+              },
             }}
           />
         </div>

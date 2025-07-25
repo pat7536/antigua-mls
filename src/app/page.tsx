@@ -7,6 +7,7 @@ import ErrorMessage from '../components/ErrorMessage';
 import FilterBar from '../components/FilterBar';
 import SimpleMap from '../components/SimpleMap';
 import Header from '../components/Header';
+import HeroBanner from '../components/HeroBanner';
 import { applyPropertyFilters } from '@/lib/filters';
 import type {
   Property,
@@ -82,6 +83,7 @@ export default function Home() {
   return (
     <div>
       <Header />
+      <HeroBanner />
 
       <main className="main">
         <div className="container">
@@ -92,7 +94,14 @@ export default function Home() {
           />
 
           <div style={{ marginBottom: '24px' }}>
-            <h2 style={{ marginBottom: '16px', fontSize: '1.25rem', fontWeight: '600', color: '#1f2937' }}>
+            <h2
+              style={{
+                marginBottom: '16px',
+                fontSize: '1.25rem',
+                fontWeight: '600',
+                color: '#1f2937',
+              }}
+            >
               Property Locations
             </h2>
             <SimpleMap properties={filteredProperties} />

@@ -4,6 +4,7 @@ import type { PropertyId, AirtableRecordId } from './branded';
 export type Property = {
   id: PropertyId;
   fields: PropertyFields;
+  createdTime?: string;
 };
 
 export type PropertyFields = {

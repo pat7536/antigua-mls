@@ -8,9 +8,12 @@ import type { Property } from '@/types/property';
 if (typeof window !== 'undefined') {
   delete (L.Icon.Default.prototype as any)._getIconUrl;
   L.Icon.Default.mergeOptions({
-    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
-    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+    iconRetinaUrl:
+      'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
+    iconUrl:
+      'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+    shadowUrl:
+      'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
   });
 }
 
@@ -21,11 +24,11 @@ type MapInnerProps = {
   properties?: Property[];
 };
 
-export default function MapInner({ 
+export default function MapInner({
   center = [17.1274, -61.8468], // Antigua coordinates
   zoom = 11,
   height = '400px',
-  properties = []
+  properties = [],
 }: MapInnerProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -41,7 +44,7 @@ export default function MapInner({
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
+      attribution: '© OpenStreetMap contributors',
     }).addTo(mapInstanceRef.current);
 
     // Cleanup function
@@ -60,18 +63,20 @@ export default function MapInner({
     }
 
     // Clear existing markers
-    markersRef.current.forEach(marker => {
+    markersRef.current.forEach((marker) => {
       mapInstanceRef.current?.removeLayer(marker);
     });
     markersRef.current = [];
 
     // Add new markers for properties with coordinates
-    properties.forEach(property => {
+    properties.forEach((property) => {
       const { Latitude, Longitude, Title, Price, Location } = property.fields;
-      
+
       if (Latitude && Longitude) {
-        const marker = L.marker([Latitude, Longitude]).addTo(mapInstanceRef.current!);
-        
+        const marker = L.marker([Latitude, Longitude]).addTo(
+          mapInstanceRef.current!
+        );
+
         // Create popup content
         const popupContent = `
           <div style="font-family: sans-serif;">
@@ -80,7 +85,7 @@ export default function MapInner({
             ${Location ? `<p style="margin: 0; color: #6b7280;">${Location}</p>` : ''}
           </div>
         `;
-        
+
         marker.bindPopup(popupContent);
         markersRef.current.push(marker);
       }
@@ -88,8 +93,8 @@ export default function MapInner({
   }, [properties]);
 
   return (
-    <div 
-      ref={mapRef} 
+    <div
+      ref={mapRef}
       style={{ height, width: '100%' }}
       className="map-container"
     />

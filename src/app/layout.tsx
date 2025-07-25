@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { ClerkProvider } from '@clerk/nextjs';
+import { SavedPropertiesProvider } from '@/contexts/SavedPropertiesContext';
+import { UserRoleProvider } from '@/contexts/UserRoleContext';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -14,9 +16,13 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body>{children}</body>
-      </html>
+      <UserRoleProvider>
+        <SavedPropertiesProvider>
+          <html lang="en">
+            <body>{children}</body>
+          </html>
+        </SavedPropertiesProvider>
+      </UserRoleProvider>
     </ClerkProvider>
   );
 }
