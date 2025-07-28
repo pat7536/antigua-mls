@@ -17,31 +17,68 @@ import type {
 
 export default function Home() {
   const [properties, setProperties] = useState<Property[]>([]);
+  const [allProperties, setAllProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [total, setTotal] = useState<number>(0);
   const [filters, setFilters] = useState<PropertyFilters>({
     bedrooms: '',
     priceRange: '',
     location: '',
   });
 
-  const fetchProperties = async () => {
+  const fetchProperties = async (page: number = 1, isLoadMore: boolean = false) => {
     try {
-      setLoading(true);
+      if (isLoadMore) {
+        setLoadingMore(true);
+      } else {
+        setLoading(true);
+      }
       setError(null);
 
-      const response = await fetch('/api/properties');
+      const response = await fetch(`/api/properties?page=${page}&limit=24`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch properties');
       }
 
       const data: PropertiesApiResponse = await response.json();
-      setProperties(data.properties);
+      
+      if (isLoadMore) {
+        setProperties(prev => [...prev, ...data.properties]);
+      } else {
+        setProperties(data.properties);
+      }
+      
+      setHasMore(data.hasMore || false);
+      setTotal(data.total || 0);
+      setCurrentPage(page);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
+      setLoadingMore(false);
+    }
+  };
+
+  const fetchAllProperties = async () => {
+    try {
+      const response = await fetch('/api/properties?all=true');
+      if (!response.ok) throw new Error('Failed to fetch all properties');
+      
+      const data: PropertiesApiResponse = await response.json();
+      setAllProperties(data.properties);
+    } catch (err) {
+      console.error('Error fetching all properties:', err);
+    }
+  };
+
+  const loadMoreProperties = () => {
+    if (!loadingMore && hasMore) {
+      fetchProperties(currentPage + 1, true);
     }
   };
 
@@ -65,11 +102,22 @@ export default function Home() {
 
   // Following C-4: Using simple, composable, testable functions
   const filteredProperties = useMemo(() => {
-    return applyPropertyFilters(properties, filters);
-  }, [properties, filters]);
+    const hasActiveFilters = filters.bedrooms || filters.priceRange || filters.location;
+    
+    if (hasActiveFilters) {
+      // Use all properties for filtering to show comprehensive results
+      return applyPropertyFilters(allProperties, filters);
+    } else {
+      // Use paginated properties when no filters are active
+      return properties;
+    }
+  }, [properties, allProperties, filters]);
+
+  const isFiltering = !!(filters.bedrooms || filters.priceRange || filters.location);
 
   useEffect(() => {
     fetchProperties();
+    fetchAllProperties();
   }, []);
 
   if (loading) {
@@ -135,12 +183,16 @@ export default function Home() {
                 {filteredProperties.length}{' '}
                 {filteredProperties.length === 1 ? 'Property' : 'Properties'}{' '}
                 Found
-                {(filters.bedrooms ||
-                  filters.priceRange ||
-                  filters.location) && (
+                {isFiltering && (
                   <span className="filter-indicator">
                     {' '}
-                    (filtered from {properties.length} total)
+                    (filtered from {total} total)
+                  </span>
+                )}
+                {!isFiltering && total > 0 && (
+                  <span className="filter-indicator">
+                    {' '}
+                    (showing {properties.length} of {total})
                   </span>
                 )}
               </div>
@@ -150,6 +202,51 @@ export default function Home() {
                   <PropertyCard key={property.id} property={property} />
                 ))}
               </div>
+
+              {/* Load More Button - only show when not filtering and there are more properties */}
+              {!isFiltering && hasMore && (
+                <div style={{ 
+                  display: 'flex', 
+                  justifyContent: 'center', 
+                  marginTop: '32px' 
+                }}>
+                  <button
+                    onClick={loadMoreProperties}
+                    disabled={loadingMore}
+                    className="btn"
+                    style={{
+                      background: loadingMore ? '#9ca3af' : '#2563eb',
+                      cursor: loadingMore ? 'not-allowed' : 'pointer',
+                      padding: '12px 32px',
+                      fontSize: '1rem',
+                      fontWeight: '500'
+                    }}
+                  >
+                    {loadingMore ? (
+                      <>
+                        <span style={{ marginRight: '8px' }}>⏳</span>
+                        Loading...
+                      </>
+                    ) : (
+                      `Load More Properties (${total - properties.length} remaining)`
+                    )}
+                  </button>
+                </div>
+              )}
+
+              {/* Show filter message when filtering */}
+              {isFiltering && filteredProperties.length > 0 && (
+                <div style={{
+                  textAlign: 'center',
+                  marginTop: '24px',
+                  padding: '16px',
+                  backgroundColor: '#eff6ff',
+                  borderRadius: '8px',
+                  color: '#1e40af'
+                }}>
+                  💡 Showing all matching properties from {total} total listings
+                </div>
+              )}
             </>
           )}
         </div>

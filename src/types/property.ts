@@ -40,4 +40,8 @@ export type AirtableResponse = {
 
 export type PropertiesApiResponse = {
   properties: Property[];
+  total?: number;
+  hasMore?: boolean;
+  page?: number;
+  limit?: number;
 };
