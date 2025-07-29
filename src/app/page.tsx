@@ -113,6 +113,19 @@ export default function Home() {
     }
   }, [properties, allProperties, filters]);
 
+  // Map should always show all properties (filtered if filters are active, otherwise all)
+  const mapProperties = useMemo(() => {
+    const hasActiveFilters = filters.bedrooms || filters.priceRange || filters.location;
+    
+    if (hasActiveFilters) {
+      // Show filtered results on map when filtering
+      return applyPropertyFilters(allProperties, filters);
+    } else {
+      // Show all properties on map when not filtering
+      return allProperties;
+    }
+  }, [allProperties, filters]);
+
   const isFiltering = !!(filters.bedrooms || filters.priceRange || filters.location);
 
   useEffect(() => {
@@ -152,7 +165,7 @@ export default function Home() {
             >
               Property Locations
             </h2>
-            <SimpleMap properties={filteredProperties} />
+            <SimpleMap properties={mapProperties} />
           </div>
 
           {filteredProperties.length === 0 ? (
