@@ -98,52 +98,65 @@ export default function SimpleMap({ properties = [] }: SimpleMapProps) {
       mapRef.current &&
       !mapInstanceRef.current
     ) {
-      let timeoutId = setTimeout(() => {
-        import('leaflet').then((L) => {
-          // Skip if already initialized
-          if (mapInstanceRef.current) return;
+      import('leaflet').then((L) => {
+        // Skip if already initialized
+        if (mapInstanceRef.current) return;
 
-          // Fix for default marker icons
-          delete (L.Icon.Default.prototype as any)._getIconUrl;
-          L.Icon.Default.mergeOptions({
-            iconRetinaUrl:
-              'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
-            iconUrl:
-              'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-            shadowUrl:
-              'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-          });
-
-          // Initialize map
-          mapInstanceRef.current = L.map(mapRef.current!).setView(
-            [17.1274, -61.8468],
-            11
-          );
-
-          // Add OpenStreetMap tiles
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
-          }).addTo(mapInstanceRef.current);
-
-          // Now that map is ready, trigger property marker creation
-          setTimeout(() => {
-            addPropertyMarkers(L);
-          }, 500);
+        // Fix for default marker icons
+        delete (L.Icon.Default.prototype as any)._getIconUrl;
+        L.Icon.Default.mergeOptions({
+          iconRetinaUrl:
+            'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
+          iconUrl:
+            'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+          shadowUrl:
+            'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
         });
-      }, 100); // Small delay to avoid race conditions
 
-      return () => clearTimeout(timeoutId);
+        // Initialize map
+        mapInstanceRef.current = L.map(mapRef.current!).setView(
+          [17.1274, -61.8468],
+          11
+        );
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors',
+        }).addTo(mapInstanceRef.current);
+
+        // Trigger property markers to be added if properties are already available
+        if (properties.length > 0) {
+          setTimeout(() => addPropertyMarkers(L), 100);
+        }
+      });
     }
   }, []);
 
   // Handle property markers when properties change
   useEffect(() => {
-    if (
-      !mapInstanceRef.current ||
-      typeof window === 'undefined' ||
-      properties.length === 0
-    ) {
+    
+    if (typeof window === 'undefined' || properties.length === 0) {
       return;
+    }
+
+    // If map isn't ready yet, wait and retry
+    if (!mapInstanceRef.current) {
+      const retryTimeoutId = setTimeout(() => {
+        // Force re-trigger by updating a dummy state or just call the effect logic again
+        if (mapInstanceRef.current && properties.length > 0) {
+          import('leaflet').then((L) => {
+            // Clear existing property markers
+            markersRef.current.forEach((marker) => {
+              if (mapInstanceRef.current) {
+                mapInstanceRef.current.removeLayer(marker);
+              }
+            });
+            markersRef.current = [];
+            addPropertyMarkers(L);
+          });
+        }
+      }, 500);
+      return () => clearTimeout(retryTimeoutId);
     }
 
     // Clear existing property markers
@@ -154,14 +167,10 @@ export default function SimpleMap({ properties = [] }: SimpleMapProps) {
     });
     markersRef.current = [];
 
-    // Add new markers with a small delay to ensure map is ready
-    const timeoutId = setTimeout(() => {
-      import('leaflet').then((L) => {
-        addPropertyMarkers(L);
-      });
-    }, 200);
-
-    return () => clearTimeout(timeoutId);
+    // Add new markers
+    import('leaflet').then((L) => {
+      addPropertyMarkers(L);
+    });
   }, [properties]);
 
   return (

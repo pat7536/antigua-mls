@@ -4,14 +4,11 @@
 export default function HeroBanner() {
   return (
     <div 
-      className="relative w-full overflow-hidden"
+      className="relative w-full overflow-hidden h-48 sm:h-56 md:h-80 lg:h-[32rem] xl:h-[36rem]"
       style={{
-        height: '60vh',
-        minHeight: '400px',
-        maxHeight: '800px',
         backgroundImage: 'url(/antigua-mls.jpg)',
         backgroundSize: 'cover',
-        backgroundPosition: 'center bottom',
+        backgroundPosition: 'center top',
         backgroundRepeat: 'no-repeat'
       }}
     >

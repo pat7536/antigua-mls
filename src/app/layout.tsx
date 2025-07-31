@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   description: 'Real Estate Listings in Antigua',
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 type RootLayoutProps = {
   children: React.ReactNode;
 };

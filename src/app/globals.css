@@ -343,12 +343,22 @@ body {
     padding: 0 16px;
   }
 
+  .header {
+    padding: 12px 0;
+  }
+
   .header h1 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .main {
+    padding: 24px 0;
   }
 
   .grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .card-content {
@@ -370,5 +380,11 @@ body {
 
   .clear-filters-btn {
     margin-top: 8px;
+  }
+
+  /* Map responsive styles */
+  .map-container {
+    height: 250px !important;
+    margin-bottom: 16px;
   }
 }

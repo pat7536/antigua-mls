@@ -18,6 +18,7 @@ import type {
 export default function Home() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [allProperties, setAllProperties] = useState<Property[]>([]);
+  const [allPropertiesLoaded, setAllPropertiesLoaded] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -71,8 +72,10 @@ export default function Home() {
       
       const data: PropertiesApiResponse = await response.json();
       setAllProperties(data.properties);
+      setAllPropertiesLoaded(true);
     } catch (err) {
       console.error('Error fetching all properties:', err);
+      setAllPropertiesLoaded(true); // Mark as loaded even on error to avoid indefinite loading
     }
   };
 
@@ -117,14 +120,21 @@ export default function Home() {
   const mapProperties = useMemo(() => {
     const hasActiveFilters = filters.bedrooms || filters.priceRange || filters.location;
     
+    
     if (hasActiveFilters) {
       // Show filtered results on map when filtering
       return applyPropertyFilters(allProperties, filters);
     } else {
-      // Show all properties on map when not filtering
-      return allProperties;
+      // For map display without filters, always wait for and use all properties
+      // Only use paginated properties as temporary fallback before all properties load
+      if (allPropertiesLoaded) {
+        return allProperties;
+      } else {
+        // Temporary fallback while waiting for all properties to load
+        return properties;
+      }
     }
-  }, [allProperties, filters]);
+  }, [allProperties, properties, filters, allPropertiesLoaded]);
 
   const isFiltering = !!(filters.bedrooms || filters.priceRange || filters.location);
 
