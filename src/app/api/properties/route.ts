@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { Property, AirtableResponse } from '@/types/property';
-import type { AirtableRecordId, PropertyId } from '@/types/branded';
+import type { PropertyId } from '@/types/branded';
 
 export async function GET(request: Request) {
   try {
@@ -42,22 +42,24 @@ export async function GET(request: Request) {
 
         const data: AirtableResponse = await response.json();
 
-        const transformedProperties: Property[] = data.records.map((record) => ({
-          id: record.id as unknown as PropertyId,
-          fields: record.fields,
-          createdTime: record.createdTime,
-        }));
+        const transformedProperties: Property[] = data.records.map(
+          (record) => ({
+            id: record.id as unknown as PropertyId,
+            fields: record.fields,
+            createdTime: record.createdTime,
+          })
+        );
 
         allProperties.push(...transformedProperties);
         offset = data.offset;
       } while (offset);
 
-      return NextResponse.json({ 
-        properties: allProperties, 
+      return NextResponse.json({
+        properties: allProperties,
         total: allProperties.length,
         hasMore: false,
         page: 1,
-        limit: allProperties.length
+        limit: allProperties.length,
       });
     }
 
@@ -98,12 +100,12 @@ export async function GET(request: Request) {
     const paginatedProperties = allProperties.slice(startIndex, endIndex);
     const hasMore = endIndex < allProperties.length;
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       properties: paginatedProperties,
       total: allProperties.length,
       hasMore,
       page,
-      limit
+      limit,
     });
   } catch (error) {
     console.error('Error fetching properties:', error);

@@ -38,8 +38,8 @@ export default function DashboardHome() {
                 role === 'admin'
                   ? 'bg-red-500'
                   : role === 'agent'
-                  ? 'bg-blue-500'
-                  : 'bg-gray-500'
+                    ? 'bg-blue-500'
+                    : 'bg-gray-500'
               }`}
             >
               {user?.firstName?.[0] ||
@@ -56,8 +56,8 @@ export default function DashboardHome() {
                     role === 'admin'
                       ? 'bg-red-100 text-red-700'
                       : role === 'agent'
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'bg-gray-100 text-gray-700'
+                        ? 'bg-blue-100 text-blue-700'
+                        : 'bg-gray-100 text-gray-700'
                   }`}
                 >
                   Role: {role.charAt(0).toUpperCase() + role.slice(1)}
@@ -71,21 +71,29 @@ export default function DashboardHome() {
         <div className="bg-white rounded-xl p-6 shadow-md">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-xs text-gray-500 uppercase tracking-wide">Saved Properties</p>
+              <p className="text-xs text-gray-500 uppercase tracking-wide">
+                Saved Properties
+              </p>
               <p className="text-2xl font-bold text-blue-600">{totalSaved}</p>
             </div>
             <div>
-              <p className="text-xs text-gray-500 uppercase tracking-wide">Avg. Price</p>
+              <p className="text-xs text-gray-500 uppercase tracking-wide">
+                Avg. Price
+              </p>
               <p className="text-2xl font-bold text-green-600">
                 {avgPrice > 0 ? `$${(avgPrice / 1000000).toFixed(1)}M` : '$0'}
               </p>
             </div>
             <div>
-              <p className="text-xs text-gray-500 uppercase tracking-wide">Views</p>
+              <p className="text-xs text-gray-500 uppercase tracking-wide">
+                Views
+              </p>
               <p className="text-2xl font-bold text-purple-600">247</p>
             </div>
             <div>
-              <p className="text-xs text-gray-500 uppercase tracking-wide">Active Alerts</p>
+              <p className="text-xs text-gray-500 uppercase tracking-wide">
+                Active Alerts
+              </p>
               <p className="text-2xl font-bold text-orange-600">3</p>
             </div>
           </div>
@@ -115,7 +123,9 @@ export default function DashboardHome() {
             <span className="text-2xl">💾</span>
             <div>
               <p className="font-semibold">Saved Properties</p>
-              <p className="text-sm text-emerald-600">{totalSaved} properties</p>
+              <p className="text-sm text-emerald-600">
+                {totalSaved} properties
+              </p>
             </div>
           </div>
         </Link>
@@ -148,26 +158,34 @@ export default function DashboardHome() {
       <div className="grid md:grid-cols-2 gap-6">
         {/* Recent Activity Card */}
         <div className="bg-white p-6 rounded-xl shadow-md">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            Recent Activity
+          </h3>
           <div className="space-y-3">
             <div className="flex items-start space-x-3">
               <span className="text-green-500 text-lg">✓</span>
               <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900">Saved property in Jolly Harbour</p>
+                <p className="text-sm font-medium text-gray-900">
+                  Saved property in Jolly Harbour
+                </p>
                 <p className="text-xs text-gray-500">2 hours ago</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
               <span className="text-blue-500 text-lg">👁️</span>
               <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900">Viewed 12 properties</p>
+                <p className="text-sm font-medium text-gray-900">
+                  Viewed 12 properties
+                </p>
                 <p className="text-xs text-gray-500">Yesterday</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
               <span className="text-purple-500 text-lg">📩</span>
               <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900">Made inquiry about luxury villa</p>
+                <p className="text-sm font-medium text-gray-900">
+                  Made inquiry about luxury villa
+                </p>
                 <p className="text-xs text-gray-500">3 days ago</p>
               </div>
             </div>
@@ -177,7 +195,9 @@ export default function DashboardHome() {
         {/* Recently Saved Card */}
         <div className="bg-white p-6 rounded-xl shadow-md">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900">Recently Saved</h3>
+            <h3 className="text-lg font-semibold text-gray-900">
+              Recently Saved
+            </h3>
             {totalSaved > 3 && (
               <Link
                 href="/dashboard/saved-properties"
@@ -230,7 +250,9 @@ export default function DashboardHome() {
 
       {/* Role Management */}
       <div className="bg-white p-6 rounded-xl shadow-md">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Role Management</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          Role Management
+        </h3>
         <RoleSelector />
       </div>
     </div>

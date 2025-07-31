@@ -18,7 +18,8 @@ import type {
 export default function Home() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [allProperties, setAllProperties] = useState<Property[]>([]);
-  const [allPropertiesLoaded, setAllPropertiesLoaded] = useState<boolean>(false);
+  const [allPropertiesLoaded, setAllPropertiesLoaded] =
+    useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -31,7 +32,10 @@ export default function Home() {
     location: '',
   });
 
-  const fetchProperties = async (page: number = 1, isLoadMore: boolean = false) => {
+  const fetchProperties = async (
+    page: number = 1,
+    isLoadMore: boolean = false
+  ) => {
     try {
       if (isLoadMore) {
         setLoadingMore(true);
@@ -47,13 +51,13 @@ export default function Home() {
       }
 
       const data: PropertiesApiResponse = await response.json();
-      
+
       if (isLoadMore) {
-        setProperties(prev => [...prev, ...data.properties]);
+        setProperties((prev) => [...prev, ...data.properties]);
       } else {
         setProperties(data.properties);
       }
-      
+
       setHasMore(data.hasMore || false);
       setTotal(data.total || 0);
       setCurrentPage(page);
@@ -69,7 +73,7 @@ export default function Home() {
     try {
       const response = await fetch('/api/properties?all=true');
       if (!response.ok) throw new Error('Failed to fetch all properties');
-      
+
       const data: PropertiesApiResponse = await response.json();
       setAllProperties(data.properties);
       setAllPropertiesLoaded(true);
@@ -105,8 +109,9 @@ export default function Home() {
 
   // Following C-4: Using simple, composable, testable functions
   const filteredProperties = useMemo(() => {
-    const hasActiveFilters = filters.bedrooms || filters.priceRange || filters.location;
-    
+    const hasActiveFilters =
+      filters.bedrooms || filters.priceRange || filters.location;
+
     if (hasActiveFilters) {
       // Use all properties for filtering to show comprehensive results
       return applyPropertyFilters(allProperties, filters);
@@ -118,9 +123,9 @@ export default function Home() {
 
   // Map should always show all properties (filtered if filters are active, otherwise all)
   const mapProperties = useMemo(() => {
-    const hasActiveFilters = filters.bedrooms || filters.priceRange || filters.location;
-    
-    
+    const hasActiveFilters =
+      filters.bedrooms || filters.priceRange || filters.location;
+
     if (hasActiveFilters) {
       // Show filtered results on map when filtering
       return applyPropertyFilters(allProperties, filters);
@@ -136,7 +141,11 @@ export default function Home() {
     }
   }, [allProperties, properties, filters, allPropertiesLoaded]);
 
-  const isFiltering = !!(filters.bedrooms || filters.priceRange || filters.location);
+  const isFiltering = !!(
+    filters.bedrooms ||
+    filters.priceRange ||
+    filters.location
+  );
 
   useEffect(() => {
     fetchProperties();
@@ -228,11 +237,13 @@ export default function Home() {
 
               {/* Load More Button - only show when not filtering and there are more properties */}
               {!isFiltering && hasMore && (
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'center', 
-                  marginTop: '32px' 
-                }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '32px',
+                  }}
+                >
                   <button
                     onClick={loadMoreProperties}
                     disabled={loadingMore}
@@ -242,7 +253,7 @@ export default function Home() {
                       cursor: loadingMore ? 'not-allowed' : 'pointer',
                       padding: '12px 32px',
                       fontSize: '1rem',
-                      fontWeight: '500'
+                      fontWeight: '500',
                     }}
                   >
                     {loadingMore ? (
@@ -259,14 +270,16 @@ export default function Home() {
 
               {/* Show filter message when filtering */}
               {isFiltering && filteredProperties.length > 0 && (
-                <div style={{
-                  textAlign: 'center',
-                  marginTop: '24px',
-                  padding: '16px',
-                  backgroundColor: '#eff6ff',
-                  borderRadius: '8px',
-                  color: '#1e40af'
-                }}>
+                <div
+                  style={{
+                    textAlign: 'center',
+                    marginTop: '24px',
+                    padding: '16px',
+                    backgroundColor: '#eff6ff',
+                    borderRadius: '8px',
+                    color: '#1e40af',
+                  }}
+                >
                   💡 Showing all matching properties from {total} total listings
                 </div>
               )}

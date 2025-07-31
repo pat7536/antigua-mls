@@ -2,10 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import type { Property } from '@/types/property';
-import {
-  getCoordinatesFromLocation,
-  getLocationDisplayName,
-} from '@/lib/locationMapping';
+import { getCoordinatesFromLocation } from '@/lib/locationMapping';
 
 type SimpleMapProps = {
   properties?: Property[];
@@ -13,18 +10,20 @@ type SimpleMapProps = {
 
 export default function SimpleMap({ properties = [] }: SimpleMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<any>(null);
+  const mapInstanceRef = useRef<L.Map | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const markersRef = useRef<any[]>([]);
 
   // Component receives properties
 
   // Function to add property markers
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const addPropertyMarkers = (L: any) => {
     let markersAdded = 0;
     let mappingsFailed = 0;
 
-    properties.forEach((property, index) => {
-      const { Title, Price, Location, Address } = property.fields;
+    properties.forEach((property) => {
+      const { Title, Price, Address } = property.fields;
       const propertyUrl = property.fields['Property URL'];
 
       let coords: [number, number] | null = null;
@@ -47,14 +46,17 @@ export default function SimpleMap({ properties = [] }: SimpleMapProps) {
       if (coords) {
         const marker = L.marker(coords, {
           icon: L.icon({
-            iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-            iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+            iconUrl:
+              'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+            iconRetinaUrl:
+              'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
+            shadowUrl:
+              'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-          })
+            shadowSize: [41, 41],
+          }),
         }).addTo(mapInstanceRef.current!);
 
         // Create popup content
@@ -103,6 +105,7 @@ export default function SimpleMap({ properties = [] }: SimpleMapProps) {
         if (mapInstanceRef.current) return;
 
         // Fix for default marker icons
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         delete (L.Icon.Default.prototype as any)._getIconUrl;
         L.Icon.Default.mergeOptions({
           iconRetinaUrl:
@@ -130,11 +133,11 @@ export default function SimpleMap({ properties = [] }: SimpleMapProps) {
         }
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Handle property markers when properties change
   useEffect(() => {
-    
     if (typeof window === 'undefined' || properties.length === 0) {
       return;
     }
@@ -171,6 +174,7 @@ export default function SimpleMap({ properties = [] }: SimpleMapProps) {
     import('leaflet').then((L) => {
       addPropertyMarkers(L);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [properties]);
 
   return (
