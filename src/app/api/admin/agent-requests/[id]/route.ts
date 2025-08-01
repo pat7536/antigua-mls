@@ -12,7 +12,7 @@ type ApprovalData = {
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Verify user is authenticated and is admin
@@ -39,7 +39,7 @@ export async function PATCH(
     }
 
     const { action }: ApprovalData = await request.json();
-    const recordId = params.id;
+    const { id: recordId } = await params;
 
     if (!action || !['approve', 'reject'].includes(action)) {
       return NextResponse.json(

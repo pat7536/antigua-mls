@@ -5,6 +5,7 @@ import { useUser } from '@clerk/nextjs';
 import { useUserRole } from '@/contexts/UserRoleContext';
 import AgentRequestForm from '@/components/AgentRequestForm';
 import Header from '@/components/Header';
+import Link from 'next/link';
 
 export default function BecomeAgentPage() {
   const { user } = useUser();
@@ -40,9 +41,9 @@ export default function BecomeAgentPage() {
               <p>This page is only accessible to users with viewer role.</p>
               <p>Current role: <strong>{role}</strong></p>
               <div style={{ marginTop: '20px' }}>
-                <a href="/" className="btn btn-primary">
+                <Link href="/" className="btn btn-primary">
                   Back to Home
-                </a>
+                </Link>
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { useUserRole } from '@/contexts/UserRoleContext';
 import Header from '@/components/Header';
+import Link from 'next/link';
 
 type AgentRequest = {
   id: string;
@@ -60,9 +61,9 @@ export default function AdminAgentRequestsPage() {
               <p>This page is only accessible to administrators.</p>
               <p>Current role: <strong>{role}</strong></p>
               <div style={{ marginTop: '20px' }}>
-                <a href="/" className="btn btn-primary">
+                <Link href="/" className="btn btn-primary">
                   Back to Home
-                </a>
+                </Link>
               </div>
             </div>
           </div>
