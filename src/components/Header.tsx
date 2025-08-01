@@ -2,8 +2,10 @@
 
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
+import { useUserRole } from '@/contexts/UserRoleContext';
 
 export default function Header() {
+  const { role } = useUserRole();
   return (
     <header className="header">
       <div className="container">
@@ -29,6 +31,22 @@ export default function Header() {
             </SignedOut>
 
             <SignedIn>
+              {role === 'viewer' && (
+                <Link
+                  href="/become-agent"
+                  className="text-green-600 hover:text-green-800 font-medium transition-colors text-sm md:text-base mr-2 md:mr-4"
+                >
+                  Become an Agent
+                </Link>
+              )}
+              {role === 'admin' && (
+                <Link
+                  href="/admin/agent-requests"
+                  className="text-purple-600 hover:text-purple-800 font-medium transition-colors text-sm md:text-base mr-2 md:mr-4"
+                >
+                  Agent Requests
+                </Link>
+              )}
               <Link
                 href="/dashboard"
                 className="text-blue-600 hover:text-blue-800 font-medium transition-colors text-sm md:text-base"

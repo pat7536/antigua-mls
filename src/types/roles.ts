@@ -32,4 +32,4 @@ export const ROLE_PERMISSIONS: Record<UserRole, UserRolePermissions> = {
   },
 };
 
-export const DEFAULT_ROLE: UserRole = 'agent';
+export const DEFAULT_ROLE: UserRole = 'viewer';

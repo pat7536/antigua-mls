@@ -6,6 +6,24 @@ import type { UserRole } from '@/types/roles';
 export default function RoleSelector() {
   const { role, updateRole, loading } = useUserRole();
 
+  // Only show role selector for admin users
+  if (role !== 'admin') {
+    return (
+      <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          Role Information
+        </h3>
+        <p className="text-sm text-gray-600 mb-4">
+          Current role: <span className="font-medium capitalize">{role}</span>
+        </p>
+        <p className="text-sm text-gray-500">
+          {role === 'viewer' && 'You can browse properties and request to become an agent.'}
+          {role === 'agent' && 'You have access to save properties and view market data.'}
+        </p>
+      </div>
+    );
+  }
+
   const roles: { value: UserRole; label: string; description: string }[] = [
     {
       value: 'admin',

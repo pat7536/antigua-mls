@@ -28,10 +28,24 @@ export function UserRoleProvider({ children }: UserRoleProviderProps) {
 
   useEffect(() => {
     if (isSignedIn && user) {
-      // Get role from Clerk user metadata
-      const userRole = user.unsafeMetadata?.role as UserRole;
-      setRole(userRole || DEFAULT_ROLE);
-      setLoading(false);
+      // Check if this is the admin user
+      const userEmail = user.primaryEmailAddress?.emailAddress;
+      const isAdmin = userEmail === 'pat7536@gmail.com';
+      
+      if (isAdmin) {
+        // Automatically set admin role for the admin user
+        if (user.unsafeMetadata?.role !== 'admin') {
+          updateRole('admin');
+        } else {
+          setRole('admin');
+          setLoading(false);
+        }
+      } else {
+        // Get role from Clerk user metadata for non-admin users
+        const userRole = user.unsafeMetadata?.role as UserRole;
+        setRole(userRole || DEFAULT_ROLE);
+        setLoading(false);
+      }
     } else if (!isSignedIn) {
       setRole(DEFAULT_ROLE);
       setLoading(false);
