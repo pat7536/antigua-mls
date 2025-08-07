@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { ClerkProvider } from '@clerk/nextjs';
 import { SavedPropertiesProvider } from '@/contexts/SavedPropertiesContext';
 import { UserRoleProvider } from '@/contexts/UserRoleContext';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -24,7 +25,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <UserRoleProvider>
         <SavedPropertiesProvider>
           <html lang="en">
-            <body>{children}</body>
+            <body>
+              <GoogleAnalytics gaId="G-55VV3FDGJJ" />
+              {children}
+            </body>
           </html>
         </SavedPropertiesProvider>
       </UserRoleProvider>
