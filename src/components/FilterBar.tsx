@@ -57,14 +57,26 @@ export default function FilterBar({
           {/* Location Filter */}
           <div className="filter-group">
             <label htmlFor="location">Location</label>
-            <input
-              type="text"
+            <select
               id="location"
               value={location}
               onChange={(e) => onFilterChange('location', e.target.value)}
-              placeholder="Search location..."
-              className="filter-input"
-            />
+              className="filter-select"
+            >
+              <option value="">All Locations</option>
+              <option value="Jolly Harbour">Jolly Harbour</option>
+              <option value="St. John's">St. John's</option>
+              <option value="English Harbour">English Harbour</option>
+              <option value="Falmouth">Falmouth</option>
+              <option value="Dickenson Bay">Dickenson Bay</option>
+              <option value="Five Islands">Five Islands</option>
+              <option value="Cedar Valley">Cedar Valley</option>
+              <option value="Nonsuch Bay">Nonsuch Bay</option>
+              <option value="Willoughby Bay">Willoughby Bay</option>
+              <option value="Coco Bay">Coco Bay</option>
+              <option value="Half Moon Bay">Half Moon Bay</option>
+              <option value="Galley Bay">Galley Bay</option>
+            </select>
           </div>
 
           {/* Clear Filters Button */}
