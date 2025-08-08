@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -17,6 +18,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname();
   const { savedProperties } = useSavedProperties();
   const { role, permissions, loading: roleLoading } = useUserRole();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   if (!isLoaded || roleLoading) {
     return (
@@ -110,10 +112,44 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      <div className="flex">
+      <div className="lg:flex">
+        {/* Mobile sidebar overlay */}
+        <div
+          className={`fixed inset-0 z-50 lg:hidden ${isSidebarOpen ? 'block' : 'hidden'}`}
+          onClick={() => setIsSidebarOpen(false)}
+        >
+          <div className="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
+        </div>
+
         {/* Sidebar */}
-        <div className="w-64 bg-white shadow-sm border-r border-gray-200 min-h-screen">
-          <div className="p-6">
+        <div
+          className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-sm border-r border-gray-200 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${
+            isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          <div className="flex items-center justify-between p-4 lg:hidden">
+            <h2 className="text-lg font-semibold text-gray-900">Menu</h2>
+            <button
+              onClick={() => setIsSidebarOpen(false)}
+              className="rounded-md p-2 text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div className="p-6 pt-4 lg:pt-6">
             {/* User Profile Section */}
             <div className="mb-8 pb-6 border-b border-gray-100">
               <div className="flex items-center space-x-3">
@@ -159,6 +195,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 <Link
                   key={item.name}
                   href={item.href}
+                  onClick={() => setIsSidebarOpen(false)}
                   className={`flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                     item.current
                       ? 'bg-blue-50 text-blue-700 border border-blue-200'
@@ -199,6 +236,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <Link
                 href="/"
                 className="w-full flex items-center justify-center px-4 py-3 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                onClick={() => setIsSidebarOpen(false)}
               >
                 Browse Properties
               </Link>
@@ -207,8 +245,31 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </div>
 
         {/* Main content */}
-        <div className="flex-1 overflow-hidden">
-          <div className="p-8 max-w-7xl mx-auto">{children}</div>
+        <div className="flex-1 lg:ml-0">
+          {/* Mobile menu button */}
+          <div className="sticky top-0 z-40 lg:hidden bg-white border-b border-gray-200 px-4 py-3">
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              className="flex items-center text-gray-600 hover:text-gray-900"
+            >
+              <svg
+                className="h-6 w-6 mr-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+              <span className="font-medium">Dashboard Menu</span>
+            </button>
+          </div>
+
+          <div className="p-4 lg:p-8 max-w-7xl mx-auto">{children}</div>
         </div>
       </div>
     </div>
