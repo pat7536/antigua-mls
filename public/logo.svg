@@ -1,0 +1,36 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f5f5f0"/>
+  
+  <!-- Ocean waves -->
+  <path d="M200 450 Q300 430 400 450 T600 450 L600 500 Q500 520 400 500 T200 500 Z" fill="#2c5282"/>
+  <path d="M200 470 Q300 450 400 470 T600 470 L600 520 Q500 540 400 520 T200 520 Z" fill="#2c5282"/>
+  <path d="M200 490 Q300 470 400 490 T600 490 L600 540 Q500 560 400 540 T200 540 Z" fill="#2c5282"/>
+  
+  <!-- Sun -->
+  <circle cx="550" cy="250" r="80" fill="#2c5282"/>
+  
+  <!-- Palm tree trunk -->
+  <ellipse cx="280" cy="420" rx="8" ry="80" fill="#2c5282"/>
+  
+  <!-- Palm fronds -->
+  <path d="M280 340 Q240 300 220 280 Q240 285 280 340" fill="#2c5282"/>
+  <path d="M280 340 Q320 300 340 280 Q320 285 280 340" fill="#2c5282"/>
+  <path d="M280 340 Q250 320 230 300 Q250 305 280 340" fill="#2c5282"/>
+  <path d="M280 340 Q310 320 330 300 Q310 305 280 340" fill="#2c5282"/>
+  <path d="M280 340 Q260 310 245 290 Q260 295 280 340" fill="#2c5282"/>
+  <path d="M280 340 Q300 310 315 290 Q300 295 280 340" fill="#2c5282"/>
+  
+  <!-- House -->
+  <polygon points="350,400 450,350 550,400 520,400 520,450 380,450 380,400" fill="white"/>
+  <polygon points="350,400 450,350 550,400 520,400 520,380 380,380 380,400" fill="#2c5282"/>
+  
+  <!-- House window -->
+  <rect x="430" y="380" width="40" height="30" fill="#2c5282"/>
+  <line x1="450" y1="380" x2="450" y2="410" stroke="white" stroke-width="2"/>
+  <line x1="430" y1="395" x2="470" y2="395" stroke="white" stroke-width="2"/>
+  
+  <!-- Text -->
+  <text x="400" y="580" font-family="serif" font-size="60" font-weight="bold" text-anchor="middle" fill="#2c5282">ANTIGUA</text>
+  <text x="400" y="630" font-family="serif" font-size="40" font-weight="bold" text-anchor="middle" fill="#2c5282" letter-spacing="8">MLS</text>
+</svg>
