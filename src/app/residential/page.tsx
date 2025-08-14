@@ -15,8 +15,6 @@ export default function ResidentialPage() {
   return (
     <PropertyResultsPage
       propertyType="residential"
-      title="Residential Properties"
-      description="Discover beautiful homes, villas, and condos for sale in Antigua & Barbuda"
     />
   );
 }

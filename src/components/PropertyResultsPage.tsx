@@ -20,14 +20,10 @@ export type PropertyType = 'residential' | 'commercial';
 
 interface PropertyResultsPageProps {
   propertyType: PropertyType;
-  title: string;
-  description: string;
 }
 
 export default function PropertyResultsPage({
   propertyType,
-  title,
-  description,
 }: PropertyResultsPageProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -202,18 +198,6 @@ export default function PropertyResultsPage({
     <div>
       <Header />
       <HeroBanner />
-      
-      {/* Hero Section */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="container py-8">
-          <div>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              {title}
-            </h1>
-            <p className="text-lg text-gray-600">{description}</p>
-          </div>
-        </div>
-      </div>
 
       <main className="main">
         <div className="container">

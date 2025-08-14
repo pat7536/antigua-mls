@@ -15,8 +15,6 @@ export default function CommercialPage() {
   return (
     <PropertyResultsPage
       propertyType="commercial"
-      title="Commercial Properties"
-      description="Find commercial properties for sale including office buildings, retail spaces, and investment opportunities"
     />
   );
 }
