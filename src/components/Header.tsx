@@ -67,6 +67,20 @@ export default function Header() {
               </SignInButton>
             </SignedOut>
 
+            {/* Property Type Links */}
+            <Link
+              href="/residential"
+              className="text-blue-700 hover:text-blue-900 font-medium transition-colors text-base"
+            >
+              Residential
+            </Link>
+            <Link
+              href="/commercial"
+              className="text-indigo-600 hover:text-indigo-800 font-medium transition-colors text-base"
+            >
+              Commercial
+            </Link>
+
             <SignedIn>
               {role === 'viewer' && (
                 <Link
@@ -198,6 +212,22 @@ export default function Header() {
                 </button>
               </SignInButton>
             </SignedOut>
+
+            {/* Property Type Links - available to all users */}
+            <Link
+              href="/residential"
+              className="block text-blue-700 hover:text-blue-900 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Residential Properties
+            </Link>
+            <Link
+              href="/commercial"
+              className="block text-indigo-600 hover:text-indigo-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Commercial Properties
+            </Link>
 
             <SignedIn>
               {role === 'viewer' && (
