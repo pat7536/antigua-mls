@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import PropertyCard from './PropertyCard';
 import LoadingSpinner from './LoadingSpinner';
@@ -22,7 +22,7 @@ interface PropertyResultsPageProps {
   propertyType: PropertyType;
 }
 
-export default function PropertyResultsPage({
+function PropertyResultsPageInner({
   propertyType,
 }: PropertyResultsPageProps) {
   const router = useRouter();
@@ -323,5 +323,13 @@ export default function PropertyResultsPage({
         </div>
       </main>
     </div>
+  );
+}
+
+export default function PropertyResultsPage(props: PropertyResultsPageProps) {
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <PropertyResultsPageInner {...props} />
+    </Suspense>
   );
 }
