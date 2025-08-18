@@ -101,7 +101,7 @@ export default function DashboardHome() {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Link
           href="/"
           className="bg-indigo-50 border border-indigo-200 text-indigo-800 p-4 rounded-xl shadow-sm hover:bg-indigo-100 hover:shadow-md transition-all duration-200 group"
@@ -125,6 +125,21 @@ export default function DashboardHome() {
               <p className="font-semibold">Saved Properties</p>
               <p className="text-sm text-emerald-600">
                 {totalSaved} properties
+              </p>
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href="/resources/agent-academy"
+          className="bg-purple-50 border border-purple-200 text-purple-800 p-4 rounded-xl shadow-sm hover:bg-purple-100 hover:shadow-md transition-all duration-200 group"
+        >
+          <div className="flex items-center space-x-3">
+            <span className="text-2xl">🎓</span>
+            <div>
+              <p className="font-semibold">Agent Academy</p>
+              <p className="text-sm text-purple-600">
+                Learn, grow, and stay ahead
               </p>
             </div>
           </div>

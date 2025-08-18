@@ -9,7 +9,6 @@ import {
   useUser,
 } from '@clerk/nextjs';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useUserRole } from '@/contexts/UserRoleContext';
 
 const AUTHORIZED_EMAILS = ['pat7536@gmail.com', 'ross.caribbeankeys@gmail.com'];
@@ -33,7 +32,10 @@ export default function Header() {
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (resourcesRef.current && !resourcesRef.current.contains(event.target as Node)) {
+      if (
+        resourcesRef.current &&
+        !resourcesRef.current.contains(event.target as Node)
+      ) {
         setResourcesDropdownOpen(false);
       }
     };
@@ -118,21 +120,40 @@ export default function Header() {
               >
                 Dashboard
               </Link>
-              
+
               {/* Resources Dropdown */}
               <div className="relative" ref={resourcesRef}>
                 <button
-                  onClick={() => setResourcesDropdownOpen(!resourcesDropdownOpen)}
+                  onClick={() =>
+                    setResourcesDropdownOpen(!resourcesDropdownOpen)
+                  }
                   className="text-gray-600 hover:text-gray-800 font-medium transition-colors text-base flex items-center gap-1"
                 >
                   Resources
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </button>
-                
+
                 {resourcesDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
+                    <Link
+                      href="/resources/agent-academy"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                      onClick={() => setResourcesDropdownOpen(false)}
+                    >
+                      Agent Academy
+                    </Link>
                     <a
                       href="/guides/antigua-agents-guide.html"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
@@ -271,10 +292,19 @@ export default function Header() {
               >
                 Dashboard
               </Link>
-              
+
               {/* Resources Section */}
               <div className="border-t border-gray-200 pt-3 mt-3">
-                <p className="px-4 py-2 text-sm font-semibold text-gray-500 uppercase">Resources</p>
+                <p className="px-4 py-2 text-sm font-semibold text-gray-500 uppercase">
+                  Resources
+                </p>
+                <Link
+                  href="/resources/agent-academy"
+                  className="block text-gray-600 hover:text-gray-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Agent Academy
+                </Link>
                 <a
                   href="/guides/antigua-agents-guide.html"
                   className="block text-gray-600 hover:text-gray-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
