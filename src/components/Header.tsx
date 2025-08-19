@@ -18,7 +18,11 @@ export default function Header() {
   const { user } = useUser();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [resourcesDropdownOpen, setResourcesDropdownOpen] = useState(false);
+  const [propertiesDropdownOpen, setPropertiesDropdownOpen] = useState(false);
+  const [agentsDropdownOpen, setAgentsDropdownOpen] = useState(false);
   const resourcesRef = useRef<HTMLDivElement>(null);
+  const propertiesRef = useRef<HTMLDivElement>(null);
+  const agentsRef = useRef<HTMLDivElement>(null);
 
   // Check if current user is authorized to add properties
   const isAuthorizedForAddProperty =
@@ -29,7 +33,7 @@ export default function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Close dropdown when clicking outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -37,6 +41,18 @@ export default function Header() {
         !resourcesRef.current.contains(event.target as Node)
       ) {
         setResourcesDropdownOpen(false);
+      }
+      if (
+        propertiesRef.current &&
+        !propertiesRef.current.contains(event.target as Node)
+      ) {
+        setPropertiesDropdownOpen(false);
+      }
+      if (
+        agentsRef.current &&
+        !agentsRef.current.contains(event.target as Node)
+      ) {
+        setAgentsDropdownOpen(false);
       }
     };
 
@@ -69,51 +85,115 @@ export default function Header() {
               </SignInButton>
             </SignedOut>
 
-            {/* Property Type Links */}
-            <Link
-              href="/residential"
-              className="text-blue-700 hover:text-blue-900 font-medium transition-colors text-base"
-            >
-              Residential
-            </Link>
-            <Link
-              href="/commercial"
-              className="text-indigo-600 hover:text-indigo-800 font-medium transition-colors text-base"
-            >
-              Commercial
-            </Link>
+            {/* Properties Dropdown */}
+            <div className="relative" ref={propertiesRef}>
+              <button
+                onClick={() =>
+                  setPropertiesDropdownOpen(!propertiesDropdownOpen)
+                }
+                className="text-gray-600 hover:text-gray-800 font-medium transition-colors text-base flex items-center gap-1"
+              >
+                Properties
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              {propertiesDropdownOpen && (
+                <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
+                  <Link
+                    href="/residential"
+                    className="block px-4 py-2 text-sm text-blue-700 hover:bg-blue-50 transition-colors"
+                    onClick={() => setPropertiesDropdownOpen(false)}
+                  >
+                    Residential
+                  </Link>
+                  <Link
+                    href="/commercial"
+                    className="block px-4 py-2 text-sm text-indigo-600 hover:bg-indigo-50 transition-colors"
+                    onClick={() => setPropertiesDropdownOpen(false)}
+                  >
+                    Commercial
+                  </Link>
+                  <SignedIn>
+                    <Link
+                      href="/featured-properties"
+                      className="block px-4 py-2 text-sm text-emerald-600 hover:bg-emerald-50 transition-colors"
+                      onClick={() => setPropertiesDropdownOpen(false)}
+                    >
+                      Featured Properties
+                    </Link>
+                  </SignedIn>
+                </div>
+              )}
+            </div>
 
             <SignedIn>
-              {role === 'viewer' && (
-                <Link
-                  href="/become-agent"
-                  className="text-green-600 hover:text-green-800 font-medium transition-colors text-base"
+              {/* For Agents Dropdown */}
+              <div className="relative" ref={agentsRef}>
+                <button
+                  onClick={() => setAgentsDropdownOpen(!agentsDropdownOpen)}
+                  className="text-gray-600 hover:text-gray-800 font-medium transition-colors text-base flex items-center gap-1"
                 >
-                  Become an Agent
-                </Link>
-              )}
-              {role === 'admin' && (
-                <Link
-                  href="/admin/agent-requests"
-                  className="text-purple-600 hover:text-purple-800 font-medium transition-colors text-base"
-                >
-                  Agent Requests
-                </Link>
-              )}
-              <Link
-                href="/featured-properties"
-                className="text-emerald-600 hover:text-emerald-800 font-medium transition-colors text-base"
-              >
-                Featured Properties
-              </Link>
-              {isAuthorizedForAddProperty && (
-                <Link
-                  href="/add-property"
-                  className="text-orange-600 hover:text-orange-800 font-medium transition-colors text-base"
-                >
-                  Add Property
-                </Link>
-              )}
+                  For Agents
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                {agentsDropdownOpen && (
+                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
+                    {role === 'viewer' && (
+                      <Link
+                        href="/become-agent"
+                        className="block px-4 py-2 text-sm text-green-600 hover:bg-green-50 transition-colors"
+                        onClick={() => setAgentsDropdownOpen(false)}
+                      >
+                        Become an Agent
+                      </Link>
+                    )}
+                    {role === 'admin' && (
+                      <Link
+                        href="/admin/agent-requests"
+                        className="block px-4 py-2 text-sm text-purple-600 hover:bg-purple-50 transition-colors"
+                        onClick={() => setAgentsDropdownOpen(false)}
+                      >
+                        Agent Requests
+                      </Link>
+                    )}
+                    {isAuthorizedForAddProperty && (
+                      <Link
+                        href="/add-property"
+                        className="block px-4 py-2 text-sm text-orange-600 hover:bg-orange-50 transition-colors"
+                        onClick={() => setAgentsDropdownOpen(false)}
+                      >
+                        Add Property
+                      </Link>
+                    )}
+                  </div>
+                )}
+              </div>
+
               <Link
                 href="/dashboard"
                 className="text-blue-600 hover:text-blue-800 font-medium transition-colors text-base"
@@ -234,60 +314,74 @@ export default function Header() {
               </SignInButton>
             </SignedOut>
 
-            {/* Property Type Links - available to all users */}
-            <Link
-              href="/residential"
-              className="block text-blue-700 hover:text-blue-900 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Residential Properties
-            </Link>
-            <Link
-              href="/commercial"
-              className="block text-indigo-600 hover:text-indigo-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Commercial Properties
-            </Link>
-
-            <SignedIn>
-              {role === 'viewer' && (
-                <Link
-                  href="/become-agent"
-                  className="block text-green-600 hover:text-green-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Become an Agent
-                </Link>
-              )}
-              {role === 'admin' && (
-                <Link
-                  href="/admin/agent-requests"
-                  className="block text-purple-600 hover:text-purple-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Agent Requests
-                </Link>
-              )}
+            {/* Properties Section */}
+            <div className="border-t border-gray-200 pt-3 mt-3">
+              <p className="px-4 py-2 text-sm font-semibold text-gray-500 uppercase">
+                Properties
+              </p>
               <Link
-                href="/featured-properties"
-                className="block text-emerald-600 hover:text-emerald-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
+                href="/residential"
+                className="block text-blue-700 hover:text-blue-900 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Featured Properties
+                Residential
               </Link>
-              {isAuthorizedForAddProperty && (
+              <Link
+                href="/commercial"
+                className="block text-indigo-600 hover:text-indigo-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Commercial
+              </Link>
+              <SignedIn>
                 <Link
-                  href="/add-property"
-                  className="block text-orange-600 hover:text-orange-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
+                  href="/featured-properties"
+                  className="block text-emerald-600 hover:text-emerald-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Add Property
+                  Featured Properties
                 </Link>
-              )}
+              </SignedIn>
+            </div>
+
+            <SignedIn>
+              {/* For Agents Section */}
+              <div className="border-t border-gray-200 pt-3 mt-3">
+                <p className="px-4 py-2 text-sm font-semibold text-gray-500 uppercase">
+                  For Agents
+                </p>
+                {role === 'viewer' && (
+                  <Link
+                    href="/become-agent"
+                    className="block text-green-600 hover:text-green-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Become an Agent
+                  </Link>
+                )}
+                {role === 'admin' && (
+                  <Link
+                    href="/admin/agent-requests"
+                    className="block text-purple-600 hover:text-purple-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Agent Requests
+                  </Link>
+                )}
+                {isAuthorizedForAddProperty && (
+                  <Link
+                    href="/add-property"
+                    className="block text-orange-600 hover:text-orange-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Add Property
+                  </Link>
+                )}
+              </div>
+
               <Link
                 href="/dashboard"
-                className="block text-blue-600 hover:text-blue-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
+                className="block text-blue-600 hover:text-blue-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded mt-3"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Dashboard
