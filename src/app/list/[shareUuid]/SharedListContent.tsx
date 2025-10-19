@@ -42,35 +42,15 @@ export default function SharedListContent({ list }: SharedListContentProps) {
       try {
         setLoading(true);
 
-        // Get all properties from both residential and commercial
-        const [residential, commercial] = await Promise.all([
-          getResidentialProperties({ all: true }),
-          getCommercialProperties({ all: true }),
-        ]);
+        // Fetch properties through our API endpoint
+        const response = await fetch(`/api/public/lists/${list.shareUuid}/properties`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch properties');
+        }
 
-        const allProperties = [
-          ...residential.properties,
-          ...commercial.properties,
-        ];
-
-        // Filter to only the properties in this list and sort them
-        const listPropertyIds = list.properties.map((p) => p.propertyId);
-        const filteredProperties = allProperties.filter((property) =>
-          listPropertyIds.includes(property.id as string)
-        );
-
-        // Sort according to the list's sort order
-        const sortedProperties = filteredProperties.sort((a, b) => {
-          const aListItem = list.properties.find((p) => p.propertyId === a.id);
-          const bListItem = list.properties.find((p) => p.propertyId === b.id);
-
-          const aSortOrder = aListItem?.sortOrder || 0;
-          const bSortOrder = bListItem?.sortOrder || 0;
-
-          return aSortOrder - bSortOrder;
-        });
-
-        setProperties(sortedProperties);
+        const data = await response.json();
+        setProperties(data.properties);
       } catch (err) {
         console.error('Error fetching properties:', err);
         setError('Failed to load properties');
@@ -104,8 +84,8 @@ export default function SharedListContent({ list }: SharedListContentProps) {
     );
   }
 
-  const getPropertyNote = (propertyId: string) => {
-    return list.properties.find((p) => p.propertyId === propertyId)?.note;
+  const getPropertyNote = (property: any) => {
+    return property.note;
   };
 
   return (
@@ -150,7 +130,7 @@ export default function SharedListContent({ list }: SharedListContentProps) {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {properties.map((property) => {
-            const note = getPropertyNote(property.id as string);
+            const note = getPropertyNote(property);
 
             return (
               <div key={property.id} className="relative">
