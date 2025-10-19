@@ -7,7 +7,15 @@ const globalForPrisma = globalThis as unknown as {
 let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === 'production') {
-  prisma = new PrismaClient();
+  // For production, create a new client each time
+  // This works better with serverless environments
+  prisma = new PrismaClient({
+    datasources: {
+      db: {
+        url: process.env.DATABASE_URL || 'file:./dev.db'
+      }
+    }
+  });
 } else {
   if (!globalForPrisma.prisma) {
     globalForPrisma.prisma = new PrismaClient();
