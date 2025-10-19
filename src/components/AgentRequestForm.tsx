@@ -18,7 +18,10 @@ type AgentRequestFormProps = {
   onCancel?: () => void;
 };
 
-export default function AgentRequestForm({ onSuccess, onCancel }: AgentRequestFormProps) {
+export default function AgentRequestForm({
+  onSuccess,
+  onCancel,
+}: AgentRequestFormProps) {
   const { user } = useUser();
   const [formData, setFormData] = useState<FormData>({
     fullName: user?.fullName || '',
@@ -31,11 +34,13 @@ export default function AgentRequestForm({ onSuccess, onCancel }: AgentRequestFo
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -60,7 +65,6 @@ export default function AgentRequestForm({ onSuccess, onCancel }: AgentRequestFo
 
       // Success! Call the onSuccess callback
       onSuccess?.();
-
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
@@ -72,18 +76,24 @@ export default function AgentRequestForm({ onSuccess, onCancel }: AgentRequestFo
     <div className="agent-request-form">
       <div className="form-header">
         <h2>Become an Agent</h2>
-        <p>Apply to become a verified agent on Antigua MLS. Our team will review your application and get back to you shortly.</p>
+        <p>
+          Apply to become a verified agent on Antigua MLS. Our team will review
+          your application and get back to you shortly.
+        </p>
       </div>
 
       {error && (
-        <div className="error-message" style={{
-          padding: '12px',
-          marginBottom: '20px',
-          backgroundColor: '#fee2e2',
-          color: '#dc2626',
-          borderRadius: '6px',
-          fontSize: '14px',
-        }}>
+        <div
+          className="error-message"
+          style={{
+            padding: '12px',
+            marginBottom: '20px',
+            backgroundColor: '#fee2e2',
+            color: '#dc2626',
+            borderRadius: '6px',
+            fontSize: '14px',
+          }}
+        >
           {error}
         </div>
       )}
@@ -179,17 +189,20 @@ export default function AgentRequestForm({ onSuccess, onCancel }: AgentRequestFo
         {/* File Upload - Placeholder for future enhancement */}
         <div className="form-group">
           <label>License Documentation (Optional)</label>
-          <div style={{
-            padding: '24px',
-            border: '2px dashed #d1d5db',
-            borderRadius: '8px',
-            textAlign: 'center',
-            color: '#6b7280',
-            background: '#f9fafb',
-          }}>
+          <div
+            style={{
+              padding: '24px',
+              border: '2px dashed #d1d5db',
+              borderRadius: '8px',
+              textAlign: 'center',
+              color: '#6b7280',
+              background: '#f9fafb',
+            }}
+          >
             <p style={{ marginBottom: '8px' }}>📄 File upload coming soon</p>
             <p style={{ fontSize: '0.85rem' }}>
-              For now, please mention any relevant documentation in the notes above.
+              For now, please mention any relevant documentation in the notes
+              above.
             </p>
           </div>
         </div>

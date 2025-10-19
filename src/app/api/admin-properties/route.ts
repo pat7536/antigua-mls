@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
-import type { AdminProperty, AdminPropertiesResponse } from '@/types/adminProperty';
+import type {
+  AdminProperty,
+  AdminPropertiesResponse,
+} from '@/types/adminProperty';
 
 export async function GET(request: Request) {
   try {
@@ -26,7 +29,7 @@ export async function GET(request: Request) {
 
     do {
       // Build URL with filter for done properties only (using "Done" checkbox field)
-      const filterFormula = "({Done} = TRUE())";
+      const filterFormula = '({Done} = TRUE())';
       const url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?filterByFormula=${encodeURIComponent(filterFormula)}${offset ? `&offset=${offset}` : ''}`;
 
       const response = await fetch(url, {
@@ -42,9 +45,11 @@ export async function GET(request: Request) {
           status: response.status,
           error: errorData,
           url: url,
-          tableName: tableName
+          tableName: tableName,
         });
-        throw new Error(`Airtable API error: ${response.status} - ${errorData}`);
+        throw new Error(
+          `Airtable API error: ${response.status} - ${errorData}`
+        );
       }
 
       const data: AdminPropertiesResponse = await response.json();
@@ -111,10 +116,7 @@ export async function POST(request: Request) {
     const { slug } = await request.json();
 
     if (!slug) {
-      return NextResponse.json(
-        { error: 'Slug is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Slug is required' }, { status: 400 });
     }
 
     // Build URL with filter for specific slug and done = true
@@ -135,7 +137,7 @@ export async function POST(request: Request) {
         error: errorData,
         url: url,
         tableName: tableName,
-        slug: slug
+        slug: slug,
       });
       throw new Error(`Airtable API error: ${response.status} - ${errorData}`);
     }

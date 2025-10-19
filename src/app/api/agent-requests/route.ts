@@ -15,7 +15,7 @@ export async function POST(request: Request) {
   try {
     // Verify user is authenticated
     const { userId } = await auth.protect();
-    
+
     const apiKey = process.env.AIRTABLE_API_KEY;
     const baseId = process.env.AIRTABLE_BASE_ID;
 
@@ -30,7 +30,8 @@ export async function POST(request: Request) {
     const formData: AgentRequestData = await request.json();
 
     // Validate required fields
-    const { fullName, email, agencyName, licenseNumber, phoneNumber } = formData;
+    const { fullName, email, agencyName, licenseNumber, phoneNumber } =
+      formData;
     if (!fullName || !email || !agencyName || !licenseNumber || !phoneNumber) {
       return NextResponse.json(
         { error: 'Missing required fields' },
@@ -42,12 +43,12 @@ export async function POST(request: Request) {
     const airtableRecord = {
       fields: {
         'Full Name': fullName,
-        'Email': email,
-        'Agency Name': agencyName,  
-        'Status': 'Pending',
+        Email: email,
+        'Agency Name': agencyName,
+        Status: 'Pending',
         'User ID': userId,
-        'Notes': `License: ${licenseNumber}, Phone: ${phoneNumber}, Additional: ${formData.additionalNotes || 'None'}`,
-      }
+        Notes: `License: ${licenseNumber}, Phone: ${phoneNumber}, Additional: ${formData.additionalNotes || 'None'}`,
+      },
     };
 
     // Submit to AgentRequests table
@@ -55,7 +56,7 @@ export async function POST(request: Request) {
     const response = await fetch(airtableUrl, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(airtableRecord),
@@ -77,7 +78,6 @@ export async function POST(request: Request) {
       message: 'Agent request submitted successfully',
       recordId: result.id,
     });
-
   } catch (error) {
     console.error('Error submitting agent request:', error);
     return NextResponse.json(

@@ -8,7 +8,9 @@ type AdminPropertyCardProps = {
   property: AdminProperty;
 };
 
-export default function AdminPropertyCard({ property }: AdminPropertyCardProps) {
+export default function AdminPropertyCard({
+  property,
+}: AdminPropertyCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
@@ -69,7 +71,7 @@ export default function AdminPropertyCard({ property }: AdminPropertyCardProps) 
               </div>
             </div>
           )}
-          
+
           {/* Price Badge */}
           <div className="absolute top-3 right-3">
             <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
@@ -87,9 +89,24 @@ export default function AdminPropertyCard({ property }: AdminPropertyCardProps) 
 
           {/* Address */}
           <p className="text-gray-600 text-sm mb-3 flex items-center">
-            <svg className="w-4 h-4 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            <svg
+              className="w-4 h-4 mr-1 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+              />
             </svg>
             {Address || 'Address not provided'}
           </p>
@@ -99,18 +116,38 @@ export default function AdminPropertyCard({ property }: AdminPropertyCardProps) 
             <div className="flex items-center space-x-4 text-sm text-gray-600">
               {Bedrooms !== undefined && (
                 <div className="flex items-center">
-                  <svg className="w-4 h-4 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2 2v0" />
+                  <svg
+                    className="w-4 h-4 mr-1 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2 2v0"
+                    />
                   </svg>
                   <span className="font-medium">{Bedrooms}</span>
                   <span className="ml-1">bed{Bedrooms !== 1 ? 's' : ''}</span>
                 </div>
               )}
-              
+
               {Bathrooms !== undefined && (
                 <div className="flex items-center">
-                  <svg className="w-4 h-4 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                  <svg
+                    className="w-4 h-4 mr-1 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
+                    />
                   </svg>
                   <span className="font-medium">{Bathrooms}</span>
                   <span className="ml-1">bath{Bathrooms !== 1 ? 's' : ''}</span>
@@ -120,8 +157,18 @@ export default function AdminPropertyCard({ property }: AdminPropertyCardProps) 
 
             {/* View Details Arrow */}
             <div className="text-blue-600 group-hover:translate-x-1 transition-transform">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </div>
           </div>

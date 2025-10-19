@@ -1,5 +1,6 @@
 import type { Property } from '@/types/property';
 import SavePropertyButton from './SavePropertyButton';
+import AddToListButton from './AddToListButton';
 
 type PropertyCardProps = {
   property: Property;
@@ -162,6 +163,15 @@ export default function PropertyCard({ property }: PropertyCardProps) {
               {sqft.toLocaleString()} sq ft
             </span>
           )}
+        </div>
+
+        {/* Action Buttons */}
+        <div
+          className="mt-4 space-y-2"
+          onClick={(e) => e.stopPropagation()} // Prevent card click when clicking action buttons
+        >
+          <SavePropertyButton property={property} />
+          <AddToListButton propertyId={property.id as string} />
         </div>
       </div>
     </div>

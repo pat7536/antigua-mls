@@ -10,7 +10,7 @@ export async function GET(request: Request) {
     const all = searchParams.get('all') === 'true';
 
     const result = await getResidentialProperties({ page, limit, all });
-    
+
     return NextResponse.json(result);
   } catch (error) {
     console.error('Error fetching residential properties:', error);

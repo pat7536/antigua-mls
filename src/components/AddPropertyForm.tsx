@@ -419,7 +419,8 @@ export function AddPropertyForm() {
         </label>
         <div className="bg-green-50 border border-green-200 rounded-md p-3 mb-4">
           <p className="text-sm text-green-800">
-            <strong>✅ Ready!</strong> Features field is now configured in Airtable. Select any applicable features below.
+            <strong>✅ Ready!</strong> Features field is now configured in
+            Airtable. Select any applicable features below.
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">

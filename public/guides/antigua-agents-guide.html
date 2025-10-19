@@ -1,520 +1,807 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Antigua & Barbuda Real Estate Agents Guide | Antigua MLS</title>
-  <meta name="description" content="The definitive, interactive handbook for real estate agents operating in Antigua & Barbuda: laws, taxes, licensing, marketing, closing, and more." />
-  <link rel="canonical" href="https://www.antigua-mls.com/guides/antigua-agents-guide" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Antigua & Barbuda Real Estate Agents Guide | Antigua MLS</title>
+    <meta
+      name="description"
+      content="The definitive, interactive handbook for real estate agents operating in Antigua & Barbuda: laws, taxes, licensing, marketing, closing, and more."
+    />
+    <link
+      rel="canonical"
+      href="https://www.antigua-mls.com/guides/antigua-agents-guide"
+    />
 
-  <!-- BRAND THEME: adjusted to match site palette -->
-  <style>
-    :root{
-      --brand:#2563eb;        /* Primary blue from site */
-      --brand-ink:#1f2937;    /* Dark ink from site */
-      --accent:#f59e0b;       /* Amber accent */
-      --bg:#ffffff;
-      --bg-soft:#f9fafb;      /* Light gray from site */
-      --ink:#1f2937;          /* Dark gray from site */
-      --muted:#6b7280;        /* Gray text from site */
-      --ring: rgba(37,99,235,.25);
-      --radius:8px;           /* Match site's 8px radius */
-      --shadow:0 1px 3px rgba(0, 0, 0, 0.1);  /* Match site's shadow */
-      --maxw:1200px;          /* Match site's container */
-      --tocw:310px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      color:var(--ink);
-      background:var(--bg-soft);
-      font:16px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    }
-    a{color:var(--brand); text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{
-      max-width:var(--maxw);
-      margin:0 auto;
-      padding:28px 18px 80px;
-      display:grid;
-      grid-template-columns: minmax(0,1fr);
-      gap:24px;
-    }
-    header.hero{
-      border-radius:var(--radius);
-      background: white;
-      padding:28px 22px;
-      box-shadow:var(--shadow);
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:18px;
-      align-items:center;
-    }
-    .hero h1{
-      margin:0 0 8px;
-      font-size: clamp(28px, 4vw, 40px);
-      line-height:1.15;
-      letter-spacing:-.2px;
-      color:var(--brand-ink);
-    }
-    .hero p{margin:0;color:var(--muted)}
-    .chips{margin-top:14px; display:flex; flex-wrap:wrap; gap:8px}
-    .chip{
-      background:var(--bg);
-      border:1px solid #e5e7eb;
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:13px; color:var(--brand);
-    }
-    .cta-bar{
-      display:flex; gap:10px; margin-top:16px; flex-wrap:wrap
-    }
-    .btn{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:10px 14px; border-radius:var(--radius); border:1px solid transparent;
-      background:var(--brand); color:#fff; font-weight:600;
-      box-shadow:var(--shadow); cursor:pointer;
-    }
-    .btn.secondary{
-      background:#fff; color:var(--brand-ink); border-color:#e5e7eb;
-    }
-    .layout{
-      display:grid; gap:24px; align-items:start;
-      grid-template-columns: var(--tocw) minmax(0,1fr);
-    }
-    nav.toc{
-      position:sticky; top:16px;
-      max-height:calc(100vh - 24px);
-      overflow:auto; padding:16px; border-radius:var(--radius);
-      background:#ffffff; box-shadow:var(--shadow); border:1px solid #e5e7eb;
-    }
-    .toc h2{font-size:14px; margin:0 0 10px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted)}
-    .toc .search{
-      display:flex; gap:8px; margin-bottom:10px;
-    }
-    .search input{
-      width:100%; padding:10px 12px; border:1px solid #e5e7eb; border-radius:var(--radius); outline:none;
-    }
-    .search input:focus{box-shadow:0 0 0 3px var(--ring); border-color:var(--brand)}
-    .toc ul{list-style:none; padding:0; margin:8px 0 0; display:grid; gap:2px}
-    .toc a{
-      display:block; padding:8px 10px; border-radius:var(--radius); color:var(--ink); font-size:14px;
-    }
-    .toc a.active{background:var(--bg-soft); color:var(--brand); font-weight:600; border:1px solid #dbeafe}
-    main.guide{
-      display:grid; gap:18px;
-    }
-    section.card{
-      background:#fff; border:1px solid #e5e7eb; border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-    section.card header.sec-head{
-      padding:18px 18px 10px;
-      border-bottom:1px solid #e5e7eb;
-      display:flex; align-items:center; gap:10px; justify-content:space-between; flex-wrap:wrap;
-    }
-    section.card h2{
-      margin:0; font-size:22px; color:var(--brand-ink); letter-spacing:-.2px;
-    }
-    .sec-tools{display:flex; gap:8px; align-items:center}
-    .iconbtn{
-      border:1px solid #e5e7eb; background:#fff; color:var(--ink);
-      border-radius:var(--radius); padding:8px 10px; font-size:13px; cursor:pointer;
-    }
-    .iconbtn:hover{background:var(--bg-soft)}
-    .content{padding:8px 18px 16px}
-    details{
-      border:1px dashed #e5e7eb; border-radius:var(--radius); margin:12px 0; background:#fafafa;
-    }
-    details[open]{background:#f9fafb}
-    summary{
-      list-style:none; cursor:pointer; padding:12px 14px; border-radius:var(--radius);
-      font-weight:600; color:var(--brand-ink);
-    }
-    summary::-webkit-details-marker{display:none}
-    .muted{color:var(--muted)}
-    .note{
-      display:flex; gap:10px; align-items:flex-start; background:#fff;
-      border:1px solid #dbeafe; padding:12px 14px; border-radius:var(--radius); color:var(--ink);
-    }
-    .badge{border-radius:6px; padding:2px 8px; background:#dbeafe; border:1px solid #93c5fd; font-size:12px; color:var(--brand)}
-    /* Code blocks for future examples */
-    pre{background:var(--brand-ink); color:#fff; padding:12px; border-radius:var(--radius); overflow:auto}
-    /* Print to PDF: hide TOC, tidy spacing */
-    @media print{
-      nav.toc{display:none}
-      .layout{grid-template-columns: 1fr}
-      .btn,.iconbtn,.sec-tools{display:none}
-      header.hero{box-shadow:none; background:#fff; border:1px solid #e9ecef}
-      a{text-decoration:none; color:#000}
-    }
-    /* Responsive */
-    @media (max-width: 960px){
-      .layout{grid-template-columns: 1fr}
-      nav.toc{position:relative; top:auto; max-height:none}
-      header.hero{grid-template-columns: 1fr}
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header class="hero" aria-labelledby="title">
-      <div>
-        <h1 id="title">Antigua &amp; Barbuda Real Estate Agents Guide</h1>
-        <p class="muted">A practical, interactive handbook for listing, marketing, and closing residential property in Antigua &amp; Barbuda—built for working agents.</p>
-        <div class="chips">
-          <span class="chip">Foreign Ownership &amp; NCHL</span>
-          <span class="chip">Taxes &amp; Fees</span>
-          <span class="chip">CIP Overview</span>
-          <span class="chip">Listing &amp; Marketing</span>
-          <span class="chip">Closing &amp; Escrow</span>
-        </div>
-        <div class="cta-bar">
-          <a class="btn" href="#overview" title="Jump to Overview">Start Reading</a>
-          <button class="btn secondary" id="printBtn" title="Print or Save as PDF">Print / PDF</button>
-        </div>
-      </div>
-      <div>
-        <div class="note">
-          <span>💡</span>
-          <div>
-            <strong>Tip:</strong> Click any section's "Copy link" to share deep links with clients or new team members. Use the left search to filter topics on the fly.
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <div class="layout">
-      <!-- Sticky Table of Contents -->
-      <nav class="toc" aria-label="Guide navigation">
-        <h2>Guide Contents</h2>
-        <div class="search">
-          <input id="tocSearch" type="search" placeholder="Filter sections…" aria-label="Filter sections">
-        </div>
-        <ul id="tocList">
-          <!-- Auto-filled by JS from <section> headings -->
-        </ul>
-      </nav>
-
-      <!-- Main Guide -->
-      <main class="guide" id="guide">
-        <!-- SECTION: Overview -->
-        <section class="card" id="overview" data-title="Market Overview">
-          <header class="sec-head">
-            <h2>Market Overview</h2>
-            <div class="sec-tools">
-              <button class="iconbtn" data-copy="#overview">Copy link</button>
-              <span class="badge">Updated</span>
-            </div>
-          </header>
-          <div class="content">
-            <p>Snapshot of what agents must know about Antigua &amp; Barbuda's residential market: buyer types, demand drivers (tourism/yachting), key hotspots (English Harbour, Jolly Harbour, Dickenson Bay), inventory flavors (condos, villas, land), and seasonality. Add 3–5 hard stats here if available.</p>
-            <details>
-              <summary>Buyer personas &amp; demand patterns</summary>
-              <ul>
-                <li><strong>Local buyers:</strong> often finance; sensitive to value and commute.</li>
-                <li><strong>Foreign buyers:</strong> lifestyle + rental yield; license adds 3–6 months.</li>
-                <li><strong>Investors/CIP:</strong> prefer approved developments; compare NCHL vs CIP fees.</li>
-              </ul>
-            </details>
-          </div>
-        </section>
-
-        <!-- SECTION: Legal Framework -->
-        <section class="card" id="legal" data-title="Legal Framework & Foreign Ownership">
-          <header class="sec-head">
-            <h2>Legal Framework &amp; Foreign Ownership</h2>
-            <div class="sec-tools">
-              <button class="iconbtn" data-copy="#legal">Copy link</button>
-              <button class="iconbtn" data-expand>Expand all</button>
-            </div>
-          </header>
-          <div class="content">
-            <p>Ownership, title, Land Registry basics. Non‑Citizen's Land Holding Licence (NCHL): who needs it, 7% of price, typical 3–6 month timeline, application pack, escrow norms, and Barbuda notes.</p>
-            <details open>
-              <summary>NCHL: what to explain to clients</summary>
-              <ul>
-                <li><strong>When:</strong> after contract; lawyer files the application.</li>
-                <li><strong>Cost:</strong> 7% of purchase price (one‑time).</li>
-                <li><strong>Timeline:</strong> 3–6 months; set expectations early.</li>
-                <li><strong>Protect deposit:</strong> add "subject to license" clause.</li>
-              </ul>
-            </details>
-            <details>
-              <summary>Barbuda specifics</summary>
-              <p>Historically communal land; verify current rules (freehold vs leasehold) with counsel before marketing or drafting terms.</p>
-            </details>
-          </div>
-        </section>
-
-        <!-- SECTION: Taxes & Costs -->
-        <section class="card" id="taxes" data-title="Taxes & Transaction Costs">
-          <header class="sec-head">
-            <h2>Taxes &amp; Transaction Costs</h2>
-            <div class="sec-tools">
-              <button class="iconbtn" data-copy="#taxes">Copy link</button>
-            </div>
-          </header>
-          <div class="content">
-            <p>Clear table of who pays what. Show buyer vs seller at a glance; include stamp duty (buyer ~2.5%), NCHL (foreign buyer 7%), legal fees (~1–2%), typical agent commission (~5%, paid by seller), and seller transfer tax (often ~7.5%).</p>
-            <details>
-              <summary>Rule‑of‑thumb calculator example</summary>
-              <p><em>Foreign buyer, US$500k:</em> Stamp $12.5k + NCHL $35k + Legal ~$5–10k ⇒ ~10.5–11.5% buyer costs (excl. price). Local buyer: ~3.5–4.5%.</p>
-            </details>
-          </div>
-        </section>
-
-        <!-- SECTION: CIP -->
-        <section class="card" id="cip" data-title="Citizenship by Investment (CIP)">
-          <header class="sec-head">
-            <h2>Citizenship by Investment (CIP)</h2>
-            <div class="sec-tools">
-              <button class="iconbtn" data-copy="#cip">Copy link</button>
-            </div>
-          </header>
-          <div class="content">
-            <p>When a development is CIP‑approved, outline min. investment, government processing fee (e.g., ~US$30,000 for single or family of up to four), hold period, and how CIP can substitute for NCHL in specific cases.</p>
-            <details>
-              <summary>Positioning with clients</summary>
-              <p>For higher price points, CIP may be financially competitive vs 7% NCHL—flag and loop in a specialist lawyer; don't give immigration advice.</p>
-            </details>
-          </div>
-        </section>
-
-        <!-- SECTION: Listing -->
-        <section class="card" id="listing" data-title="Listing: Prep, Pricing, & Presentation">
-          <header class="sec-head">
-            <h2>Listing: Prep, Pricing, &amp; Presentation</h2>
-            <div class="sec-tools">
-              <button class="iconbtn" data-copy="#listing">Copy link</button>
-              <button class="iconbtn" data-expand>Expand all</button>
-            </div>
-          </header>
-          <div class="content">
-            <details open>
-              <summary>Pricing strategy in a small‑data market</summary>
-              <ul>
-                <li>Triangulate with comps, time‑on‑market, and appraisals.</li>
-                <li>Set expectation on timeline vs price ambition.</li>
-              </ul>
-            </details>
-            <details>
-              <summary>Prep & staging checklist</summary>
-              <ul>
-                <li>Fix obvious defects; fresh paint/landscaping.</li>
-                <li>Pro photos + drone + 60–120s video tour.</li>
-                <li>Inventory list if furnished; HOA/strata info ready.</li>
-              </ul>
-            </details>
-            <details>
-              <summary>Listing agreements & cooperation</summary>
-              <p>Prefer exclusives with clear term/commission; co‑broke fairly to expand reach.</p>
-            </details>
-          </div>
-        </section>
-
-        <!-- SECTION: Marketing -->
-        <section class="card" id="marketing" data-title="Marketing Playbook">
-          <header class="sec-head">
-            <h2>Marketing Playbook</h2>
-            <div class="sec-tools">
-              <button class="iconbtn" data-copy="#marketing">Copy link</button>
-            </div>
-          </header>
-          <div class="content">
-            <details open>
-              <summary>Digital</summary>
-              <ul>
-                <li>Antigua‑MLS page + schema; syndicate to key portals.</li>
-                <li>IG/FB reels, virtual open houses; YouTube shorts.</li>
-              </ul>
-            </details>
-            <details>
-              <summary>Local & partnerships</summary>
-              <ul>
-                <li>Concierge/hotel, marinas, expat groups, print glossies.</li>
-                <li>Referral agreements with feeder‑market agents.</li>
-              </ul>
-            </details>
-          </div>
-        </section>
-
-        <!-- SECTION: Buyers -->
-        <section class="card" id="buyers" data-title="Working with Buyers">
-          <header class="sec-head">
-            <h2>Working with Buyers</h2>
-            <div class="sec-tools">
-              <button class="iconbtn" data-copy="#buyers">Copy link</button>
-            </div>
-          </header>
-          <div class="content">
-            <details open>
-              <summary>Touring & concierge</summary>
-              <p>Cluster viewings by area; provide info packs; plan for sun/showers; sell lifestyle on drives.</p>
-            </details>
-            <details>
-              <summary>Process education</summary>
-              <p>Offer → SPA → 10% escrow → NCHL (3–6 mo) → completion. Reassure around escrow/title checks.</p>
-            </details>
-            <details>
-              <summary>Negotiation</summary>
-              <p>Typical room from ask; use clean terms (cash, fewer contingencies) to bridge gaps.</p>
-            </details>
-          </div>
-        </section>
-
-        <!-- SECTION: Closing -->
-        <section class="card" id="closing" data-title="Transaction & Closing">
-          <header class="sec-head">
-            <h2>Transaction &amp; Closing</h2>
-            <div class="sec-tools">
-              <button class="iconbtn" data-copy="#closing">Copy link</button>
-            </div>
-          </header>
-          <div class="content">
-            <ol>
-              <li>Offer accepted → heads of terms</li>
-              <li>Sale & Purchase Agreement drafted by counsel</li>
-              <li>10% deposit into attorney escrow</li>
-              <li>NCHL application + due diligence/title search</li>
-              <li>License approval → set completion date</li>
-              <li>Final funds, documents, taxes/fees settled → keys</li>
-            </ol>
-            <details>
-              <summary>Pre‑close checklist</summary>
-              <ul>
-                <li>Wire timelines, PoA if remote, inventory/bill of sale.</li>
-                <li>Final walkthrough, utilities handover, manager intro.</li>
-              </ul>
-            </details>
-          </div>
-        </section>
-
-        <!-- SECTION: Post-Sale -->
-        <section class="card" id="post" data-title="Post‑Sale & Repeat Business">
-          <header class="sec-head">
-            <h2>Post‑Sale &amp; Repeat Business</h2>
-            <div class="sec-tools">
-              <button class="iconbtn" data-copy="#post">Copy link</button>
-            </div>
-          </header>
-          <div class="content">
-            <p>Property management referrals, rental setup, settle‑in guide, follow‑ups, and testimonial/referral engine.</p>
-          </div>
-        </section>
-
-        <!-- SECTION: Quick Reference -->
-        <section class="card" id="quickref" data-title="Quick Reference">
-          <header class="sec-head">
-            <h2>Quick Reference</h2>
-            <div class="sec-tools">
-              <button class="iconbtn" data-copy="#quickref">Copy link</button>
-              <button class="iconbtn" id="expandAll">Expand all</button>
-              <button class="iconbtn" id="collapseAll">Collapse all</button>
-            </div>
-          </header>
-          <div class="content">
-            <details open>
-              <summary>Who pays what?</summary>
-              <ul>
-                <li><strong>Buyer:</strong> Stamp ~2.5%, NCHL 7% (foreign), legal ~1–2%.</li>
-                <li><strong>Seller:</strong> Commission ~5%, transfer tax (often ~7.5%), legal ~1%.</li>
-              </ul>
-            </details>
-            <details>
-              <summary>Standard deposit</summary>
-              <p>10% to attorney escrow at SPA signing.</p>
-            </details>
-            <details>
-              <summary>Foreign‑buyer timeline</summary>
-              <p>Plan 3–6 months from SPA to completion due to NCHL.</p>
-            </details>
-          </div>
-        </section>
-
-      </main>
-    </div>
-  </div>
-
-  <script>
-    // ===== Utilities =====
-    const $ = (s, r=document)=>r.querySelector(s);
-    const $$ = (s, r=document)=>Array.from(r.querySelectorAll(s));
-
-    // Build TOC from sections
-    const tocList = $('#tocList');
-    const sections = $$('.guide > section.card');
-    sections.forEach(sec=>{
-      const id = sec.id;
-      const title = sec.dataset.title || sec.querySelector('h2')?.textContent?.trim() || id;
-      const li = document.createElement('li');
-      li.innerHTML = `<a href="#${id}">${title}</a>`;
-      tocList.appendChild(li);
-    });
-
-    // Scrollspy
-    const tocLinks = $$('#tocList a');
-    const obs = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          tocLinks.forEach(a=>a.classList.remove('active'));
-          const link = $(`#tocList a[href="#${entry.target.id}"]`);
-          link && link.classList.add('active');
-          history.replaceState(null,'',`#${entry.target.id}`);
+    <!-- BRAND THEME: adjusted to match site palette -->
+    <style>
+      :root {
+        --brand: #2563eb; /* Primary blue from site */
+        --brand-ink: #1f2937; /* Dark ink from site */
+        --accent: #f59e0b; /* Amber accent */
+        --bg: #ffffff;
+        --bg-soft: #f9fafb; /* Light gray from site */
+        --ink: #1f2937; /* Dark gray from site */
+        --muted: #6b7280; /* Gray text from site */
+        --ring: rgba(37, 99, 235, 0.25);
+        --radius: 8px; /* Match site's 8px radius */
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Match site's shadow */
+        --maxw: 1200px; /* Match site's container */
+        --tocw: 310px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--bg-soft);
+        font:
+          16px/1.6 -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          sans-serif;
+      }
+      a {
+        color: var(--brand);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 28px 18px 80px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+      }
+      header.hero {
+        border-radius: var(--radius);
+        background: white;
+        padding: 28px 22px;
+        box-shadow: var(--shadow);
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 18px;
+        align-items: center;
+      }
+      .hero h1 {
+        margin: 0 0 8px;
+        font-size: clamp(28px, 4vw, 40px);
+        line-height: 1.15;
+        letter-spacing: -0.2px;
+        color: var(--brand-ink);
+      }
+      .hero p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .chips {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .chip {
+        background: var(--bg);
+        border: 1px solid #e5e7eb;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+        color: var(--brand);
+      }
+      .cta-bar {
+        display: flex;
+        gap: 10px;
+        margin-top: 16px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: var(--radius);
+        border: 1px solid transparent;
+        background: var(--brand);
+        color: #fff;
+        font-weight: 600;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+      }
+      .btn.secondary {
+        background: #fff;
+        color: var(--brand-ink);
+        border-color: #e5e7eb;
+      }
+      .layout {
+        display: grid;
+        gap: 24px;
+        align-items: start;
+        grid-template-columns: var(--tocw) minmax(0, 1fr);
+      }
+      nav.toc {
+        position: sticky;
+        top: 16px;
+        max-height: calc(100vh - 24px);
+        overflow: auto;
+        padding: 16px;
+        border-radius: var(--radius);
+        background: #ffffff;
+        box-shadow: var(--shadow);
+        border: 1px solid #e5e7eb;
+      }
+      .toc h2 {
+        font-size: 14px;
+        margin: 0 0 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+      }
+      .toc .search {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .search input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #e5e7eb;
+        border-radius: var(--radius);
+        outline: none;
+      }
+      .search input:focus {
+        box-shadow: 0 0 0 3px var(--ring);
+        border-color: var(--brand);
+      }
+      .toc ul {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 0;
+        display: grid;
+        gap: 2px;
+      }
+      .toc a {
+        display: block;
+        padding: 8px 10px;
+        border-radius: var(--radius);
+        color: var(--ink);
+        font-size: 14px;
+      }
+      .toc a.active {
+        background: var(--bg-soft);
+        color: var(--brand);
+        font-weight: 600;
+        border: 1px solid #dbeafe;
+      }
+      main.guide {
+        display: grid;
+        gap: 18px;
+      }
+      section.card {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+      section.card header.sec-head {
+        padding: 18px 18px 10px;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      section.card h2 {
+        margin: 0;
+        font-size: 22px;
+        color: var(--brand-ink);
+        letter-spacing: -0.2px;
+      }
+      .sec-tools {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .iconbtn {
+        border: 1px solid #e5e7eb;
+        background: #fff;
+        color: var(--ink);
+        border-radius: var(--radius);
+        padding: 8px 10px;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .iconbtn:hover {
+        background: var(--bg-soft);
+      }
+      .content {
+        padding: 8px 18px 16px;
+      }
+      details {
+        border: 1px dashed #e5e7eb;
+        border-radius: var(--radius);
+        margin: 12px 0;
+        background: #fafafa;
+      }
+      details[open] {
+        background: #f9fafb;
+      }
+      summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 12px 14px;
+        border-radius: var(--radius);
+        font-weight: 600;
+        color: var(--brand-ink);
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .note {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        background: #fff;
+        border: 1px solid #dbeafe;
+        padding: 12px 14px;
+        border-radius: var(--radius);
+        color: var(--ink);
+      }
+      .badge {
+        border-radius: 6px;
+        padding: 2px 8px;
+        background: #dbeafe;
+        border: 1px solid #93c5fd;
+        font-size: 12px;
+        color: var(--brand);
+      }
+      /* Code blocks for future examples */
+      pre {
+        background: var(--brand-ink);
+        color: #fff;
+        padding: 12px;
+        border-radius: var(--radius);
+        overflow: auto;
+      }
+      /* Print to PDF: hide TOC, tidy spacing */
+      @media print {
+        nav.toc {
+          display: none;
         }
-      });
-    }, { rootMargin:'-40% 0px -55% 0px', threshold: [0, 0.25, 0.5, 1] });
-    sections.forEach(s=>obs.observe(s));
-
-    // TOC filter
-    $('#tocSearch').addEventListener('input', (e)=>{
-      const q = e.target.value.toLowerCase();
-      $$('#tocList li').forEach(li=>{
-        const t = li.textContent.toLowerCase();
-        li.style.display = t.includes(q) ? '' : 'none';
-      });
-    });
-
-    // Copy deep link buttons
-    $$('[data-copy]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const sel = btn.getAttribute('data-copy');
-        const url = `${location.origin}${location.pathname}${sel}`;
-        navigator.clipboard.writeText(url).then(()=>{
-          btn.textContent = 'Link copied!';
-          setTimeout(()=>btn.textContent='Copy link', 1400);
-        });
-      });
-    });
-
-    // Expand/collapse controls
-    function setAll(open){
-      sections.forEach(sec=>$$('details', sec).forEach(d=>d.open = open));
-    }
-    $('#expandAll')?.addEventListener('click', ()=>setAll(true));
-    $('#collapseAll')?.addEventListener('click', ()=>setAll(false));
-    $$('[data-expand]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const card = btn.closest('section.card');
-        const openAny = $$('details', card).some(d=>!d.open);
-        $$('details', card).forEach(d=>d.open = openAny);
-      });
-    });
-
-    // Print button
-    $('#printBtn').addEventListener('click', ()=>window.print());
-
-    // If URL has a hash, ensure the linked details are open
-    window.addEventListener('load', ()=>{
-      if(location.hash){
-        const target = document.getElementById(location.hash.slice(1));
-        if(target){
-          $$('details', target).forEach(d=>d.open = true);
-          target.scrollIntoView({behavior:'smooth', block:'start'});
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .btn,
+        .iconbtn,
+        .sec-tools {
+          display: none;
+        }
+        header.hero {
+          box-shadow: none;
+          background: #fff;
+          border: 1px solid #e9ecef;
+        }
+        a {
+          text-decoration: none;
+          color: #000;
         }
       }
-    });
-  </script>
-</body>
+      /* Responsive */
+      @media (max-width: 960px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        nav.toc {
+          position: relative;
+          top: auto;
+          max-height: none;
+        }
+        header.hero {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="hero" aria-labelledby="title">
+        <div>
+          <h1 id="title">Antigua &amp; Barbuda Real Estate Agents Guide</h1>
+          <p class="muted">
+            A practical, interactive handbook for listing, marketing, and
+            closing residential property in Antigua &amp; Barbuda—built for
+            working agents.
+          </p>
+          <div class="chips">
+            <span class="chip">Foreign Ownership &amp; NCHL</span>
+            <span class="chip">Taxes &amp; Fees</span>
+            <span class="chip">CIP Overview</span>
+            <span class="chip">Listing &amp; Marketing</span>
+            <span class="chip">Closing &amp; Escrow</span>
+          </div>
+          <div class="cta-bar">
+            <a class="btn" href="#overview" title="Jump to Overview"
+              >Start Reading</a
+            >
+            <button
+              class="btn secondary"
+              id="printBtn"
+              title="Print or Save as PDF"
+            >
+              Print / PDF
+            </button>
+          </div>
+        </div>
+        <div>
+          <div class="note">
+            <span>💡</span>
+            <div>
+              <strong>Tip:</strong> Click any section's "Copy link" to share
+              deep links with clients or new team members. Use the left search
+              to filter topics on the fly.
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <!-- Sticky Table of Contents -->
+        <nav class="toc" aria-label="Guide navigation">
+          <h2>Guide Contents</h2>
+          <div class="search">
+            <input
+              id="tocSearch"
+              type="search"
+              placeholder="Filter sections…"
+              aria-label="Filter sections"
+            />
+          </div>
+          <ul id="tocList">
+            <!-- Auto-filled by JS from <section> headings -->
+          </ul>
+        </nav>
+
+        <!-- Main Guide -->
+        <main class="guide" id="guide">
+          <!-- SECTION: Overview -->
+          <section class="card" id="overview" data-title="Market Overview">
+            <header class="sec-head">
+              <h2>Market Overview</h2>
+              <div class="sec-tools">
+                <button class="iconbtn" data-copy="#overview">Copy link</button>
+                <span class="badge">Updated</span>
+              </div>
+            </header>
+            <div class="content">
+              <p>
+                Snapshot of what agents must know about Antigua &amp; Barbuda's
+                residential market: buyer types, demand drivers
+                (tourism/yachting), key hotspots (English Harbour, Jolly
+                Harbour, Dickenson Bay), inventory flavors (condos, villas,
+                land), and seasonality. Add 3–5 hard stats here if available.
+              </p>
+              <details>
+                <summary>Buyer personas &amp; demand patterns</summary>
+                <ul>
+                  <li>
+                    <strong>Local buyers:</strong> often finance; sensitive to
+                    value and commute.
+                  </li>
+                  <li>
+                    <strong>Foreign buyers:</strong> lifestyle + rental yield;
+                    license adds 3–6 months.
+                  </li>
+                  <li>
+                    <strong>Investors/CIP:</strong> prefer approved
+                    developments; compare NCHL vs CIP fees.
+                  </li>
+                </ul>
+              </details>
+            </div>
+          </section>
+
+          <!-- SECTION: Legal Framework -->
+          <section
+            class="card"
+            id="legal"
+            data-title="Legal Framework & Foreign Ownership"
+          >
+            <header class="sec-head">
+              <h2>Legal Framework &amp; Foreign Ownership</h2>
+              <div class="sec-tools">
+                <button class="iconbtn" data-copy="#legal">Copy link</button>
+                <button class="iconbtn" data-expand>Expand all</button>
+              </div>
+            </header>
+            <div class="content">
+              <p>
+                Ownership, title, Land Registry basics. Non‑Citizen's Land
+                Holding Licence (NCHL): who needs it, 7% of price, typical 3–6
+                month timeline, application pack, escrow norms, and Barbuda
+                notes.
+              </p>
+              <details open>
+                <summary>NCHL: what to explain to clients</summary>
+                <ul>
+                  <li>
+                    <strong>When:</strong> after contract; lawyer files the
+                    application.
+                  </li>
+                  <li>
+                    <strong>Cost:</strong> 7% of purchase price (one‑time).
+                  </li>
+                  <li>
+                    <strong>Timeline:</strong> 3–6 months; set expectations
+                    early.
+                  </li>
+                  <li>
+                    <strong>Protect deposit:</strong> add "subject to license"
+                    clause.
+                  </li>
+                </ul>
+              </details>
+              <details>
+                <summary>Barbuda specifics</summary>
+                <p>
+                  Historically communal land; verify current rules (freehold vs
+                  leasehold) with counsel before marketing or drafting terms.
+                </p>
+              </details>
+            </div>
+          </section>
+
+          <!-- SECTION: Taxes & Costs -->
+          <section
+            class="card"
+            id="taxes"
+            data-title="Taxes & Transaction Costs"
+          >
+            <header class="sec-head">
+              <h2>Taxes &amp; Transaction Costs</h2>
+              <div class="sec-tools">
+                <button class="iconbtn" data-copy="#taxes">Copy link</button>
+              </div>
+            </header>
+            <div class="content">
+              <p>
+                Clear table of who pays what. Show buyer vs seller at a glance;
+                include stamp duty (buyer ~2.5%), NCHL (foreign buyer 7%), legal
+                fees (~1–2%), typical agent commission (~5%, paid by seller),
+                and seller transfer tax (often ~7.5%).
+              </p>
+              <details>
+                <summary>Rule‑of‑thumb calculator example</summary>
+                <p>
+                  <em>Foreign buyer, US$500k:</em> Stamp $12.5k + NCHL $35k +
+                  Legal ~$5–10k ⇒ ~10.5–11.5% buyer costs (excl. price). Local
+                  buyer: ~3.5–4.5%.
+                </p>
+              </details>
+            </div>
+          </section>
+
+          <!-- SECTION: CIP -->
+          <section
+            class="card"
+            id="cip"
+            data-title="Citizenship by Investment (CIP)"
+          >
+            <header class="sec-head">
+              <h2>Citizenship by Investment (CIP)</h2>
+              <div class="sec-tools">
+                <button class="iconbtn" data-copy="#cip">Copy link</button>
+              </div>
+            </header>
+            <div class="content">
+              <p>
+                When a development is CIP‑approved, outline min. investment,
+                government processing fee (e.g., ~US$30,000 for single or family
+                of up to four), hold period, and how CIP can substitute for NCHL
+                in specific cases.
+              </p>
+              <details>
+                <summary>Positioning with clients</summary>
+                <p>
+                  For higher price points, CIP may be financially competitive vs
+                  7% NCHL—flag and loop in a specialist lawyer; don't give
+                  immigration advice.
+                </p>
+              </details>
+            </div>
+          </section>
+
+          <!-- SECTION: Listing -->
+          <section
+            class="card"
+            id="listing"
+            data-title="Listing: Prep, Pricing, & Presentation"
+          >
+            <header class="sec-head">
+              <h2>Listing: Prep, Pricing, &amp; Presentation</h2>
+              <div class="sec-tools">
+                <button class="iconbtn" data-copy="#listing">Copy link</button>
+                <button class="iconbtn" data-expand>Expand all</button>
+              </div>
+            </header>
+            <div class="content">
+              <details open>
+                <summary>Pricing strategy in a small‑data market</summary>
+                <ul>
+                  <li>
+                    Triangulate with comps, time‑on‑market, and appraisals.
+                  </li>
+                  <li>Set expectation on timeline vs price ambition.</li>
+                </ul>
+              </details>
+              <details>
+                <summary>Prep & staging checklist</summary>
+                <ul>
+                  <li>Fix obvious defects; fresh paint/landscaping.</li>
+                  <li>Pro photos + drone + 60–120s video tour.</li>
+                  <li>Inventory list if furnished; HOA/strata info ready.</li>
+                </ul>
+              </details>
+              <details>
+                <summary>Listing agreements & cooperation</summary>
+                <p>
+                  Prefer exclusives with clear term/commission; co‑broke fairly
+                  to expand reach.
+                </p>
+              </details>
+            </div>
+          </section>
+
+          <!-- SECTION: Marketing -->
+          <section class="card" id="marketing" data-title="Marketing Playbook">
+            <header class="sec-head">
+              <h2>Marketing Playbook</h2>
+              <div class="sec-tools">
+                <button class="iconbtn" data-copy="#marketing">
+                  Copy link
+                </button>
+              </div>
+            </header>
+            <div class="content">
+              <details open>
+                <summary>Digital</summary>
+                <ul>
+                  <li>Antigua‑MLS page + schema; syndicate to key portals.</li>
+                  <li>IG/FB reels, virtual open houses; YouTube shorts.</li>
+                </ul>
+              </details>
+              <details>
+                <summary>Local & partnerships</summary>
+                <ul>
+                  <li>
+                    Concierge/hotel, marinas, expat groups, print glossies.
+                  </li>
+                  <li>Referral agreements with feeder‑market agents.</li>
+                </ul>
+              </details>
+            </div>
+          </section>
+
+          <!-- SECTION: Buyers -->
+          <section class="card" id="buyers" data-title="Working with Buyers">
+            <header class="sec-head">
+              <h2>Working with Buyers</h2>
+              <div class="sec-tools">
+                <button class="iconbtn" data-copy="#buyers">Copy link</button>
+              </div>
+            </header>
+            <div class="content">
+              <details open>
+                <summary>Touring & concierge</summary>
+                <p>
+                  Cluster viewings by area; provide info packs; plan for
+                  sun/showers; sell lifestyle on drives.
+                </p>
+              </details>
+              <details>
+                <summary>Process education</summary>
+                <p>
+                  Offer → SPA → 10% escrow → NCHL (3–6 mo) → completion.
+                  Reassure around escrow/title checks.
+                </p>
+              </details>
+              <details>
+                <summary>Negotiation</summary>
+                <p>
+                  Typical room from ask; use clean terms (cash, fewer
+                  contingencies) to bridge gaps.
+                </p>
+              </details>
+            </div>
+          </section>
+
+          <!-- SECTION: Closing -->
+          <section class="card" id="closing" data-title="Transaction & Closing">
+            <header class="sec-head">
+              <h2>Transaction &amp; Closing</h2>
+              <div class="sec-tools">
+                <button class="iconbtn" data-copy="#closing">Copy link</button>
+              </div>
+            </header>
+            <div class="content">
+              <ol>
+                <li>Offer accepted → heads of terms</li>
+                <li>Sale & Purchase Agreement drafted by counsel</li>
+                <li>10% deposit into attorney escrow</li>
+                <li>NCHL application + due diligence/title search</li>
+                <li>License approval → set completion date</li>
+                <li>Final funds, documents, taxes/fees settled → keys</li>
+              </ol>
+              <details>
+                <summary>Pre‑close checklist</summary>
+                <ul>
+                  <li>
+                    Wire timelines, PoA if remote, inventory/bill of sale.
+                  </li>
+                  <li>Final walkthrough, utilities handover, manager intro.</li>
+                </ul>
+              </details>
+            </div>
+          </section>
+
+          <!-- SECTION: Post-Sale -->
+          <section
+            class="card"
+            id="post"
+            data-title="Post‑Sale & Repeat Business"
+          >
+            <header class="sec-head">
+              <h2>Post‑Sale &amp; Repeat Business</h2>
+              <div class="sec-tools">
+                <button class="iconbtn" data-copy="#post">Copy link</button>
+              </div>
+            </header>
+            <div class="content">
+              <p>
+                Property management referrals, rental setup, settle‑in guide,
+                follow‑ups, and testimonial/referral engine.
+              </p>
+            </div>
+          </section>
+
+          <!-- SECTION: Quick Reference -->
+          <section class="card" id="quickref" data-title="Quick Reference">
+            <header class="sec-head">
+              <h2>Quick Reference</h2>
+              <div class="sec-tools">
+                <button class="iconbtn" data-copy="#quickref">Copy link</button>
+                <button class="iconbtn" id="expandAll">Expand all</button>
+                <button class="iconbtn" id="collapseAll">Collapse all</button>
+              </div>
+            </header>
+            <div class="content">
+              <details open>
+                <summary>Who pays what?</summary>
+                <ul>
+                  <li>
+                    <strong>Buyer:</strong> Stamp ~2.5%, NCHL 7% (foreign),
+                    legal ~1–2%.
+                  </li>
+                  <li>
+                    <strong>Seller:</strong> Commission ~5%, transfer tax (often
+                    ~7.5%), legal ~1%.
+                  </li>
+                </ul>
+              </details>
+              <details>
+                <summary>Standard deposit</summary>
+                <p>10% to attorney escrow at SPA signing.</p>
+              </details>
+              <details>
+                <summary>Foreign‑buyer timeline</summary>
+                <p>Plan 3–6 months from SPA to completion due to NCHL.</p>
+              </details>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      // ===== Utilities =====
+      const $ = (s, r = document) => r.querySelector(s);
+      const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+      // Build TOC from sections
+      const tocList = $('#tocList');
+      const sections = $$('.guide > section.card');
+      sections.forEach((sec) => {
+        const id = sec.id;
+        const title =
+          sec.dataset.title ||
+          sec.querySelector('h2')?.textContent?.trim() ||
+          id;
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="#${id}">${title}</a>`;
+        tocList.appendChild(li);
+      });
+
+      // Scrollspy
+      const tocLinks = $$('#tocList a');
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              tocLinks.forEach((a) => a.classList.remove('active'));
+              const link = $(`#tocList a[href="#${entry.target.id}"]`);
+              link && link.classList.add('active');
+              history.replaceState(null, '', `#${entry.target.id}`);
+            }
+          });
+        },
+        { rootMargin: '-40% 0px -55% 0px', threshold: [0, 0.25, 0.5, 1] }
+      );
+      sections.forEach((s) => obs.observe(s));
+
+      // TOC filter
+      $('#tocSearch').addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase();
+        $$('#tocList li').forEach((li) => {
+          const t = li.textContent.toLowerCase();
+          li.style.display = t.includes(q) ? '' : 'none';
+        });
+      });
+
+      // Copy deep link buttons
+      $$('[data-copy]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const sel = btn.getAttribute('data-copy');
+          const url = `${location.origin}${location.pathname}${sel}`;
+          navigator.clipboard.writeText(url).then(() => {
+            btn.textContent = 'Link copied!';
+            setTimeout(() => (btn.textContent = 'Copy link'), 1400);
+          });
+        });
+      });
+
+      // Expand/collapse controls
+      function setAll(open) {
+        sections.forEach((sec) =>
+          $$('details', sec).forEach((d) => (d.open = open))
+        );
+      }
+      $('#expandAll')?.addEventListener('click', () => setAll(true));
+      $('#collapseAll')?.addEventListener('click', () => setAll(false));
+      $$('[data-expand]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('section.card');
+          const openAny = $$('details', card).some((d) => !d.open);
+          $$('details', card).forEach((d) => (d.open = openAny));
+        });
+      });
+
+      // Print button
+      $('#printBtn').addEventListener('click', () => window.print());
+
+      // If URL has a hash, ensure the linked details are open
+      window.addEventListener('load', () => {
+        if (location.hash) {
+          const target = document.getElementById(location.hash.slice(1));
+          if (target) {
+            $$('details', target).forEach((d) => (d.open = true));
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    </script>
+  </body>
 </html>

@@ -14,7 +14,7 @@ export async function GET() {
 
     // Try to get base schema to see what tables exist
     const schemaUrl = `https://api.airtable.com/v0/meta/bases/${baseId}/tables`;
-    
+
     const schemaResponse = await fetch(schemaUrl, {
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -23,9 +23,13 @@ export async function GET() {
 
     if (schemaResponse.ok) {
       const schemaData = await schemaResponse.json();
-      const adminPropertiesTable = schemaData.tables?.find((table: any) => table.name === 'Admin Properties');
-      const featuresField = adminPropertiesTable?.fields?.find((field: any) => field.name === 'Features');
-      
+      const adminPropertiesTable = schemaData.tables?.find(
+        (table: any) => table.name === 'Admin Properties'
+      );
+      const featuresField = adminPropertiesTable?.fields?.find(
+        (field: any) => field.name === 'Features'
+      );
+
       return NextResponse.json({
         success: true,
         message: 'Base schema retrieved successfully',
@@ -35,10 +39,10 @@ export async function GET() {
           fields: adminPropertiesTable?.fields?.map((field: any) => ({
             name: field.name,
             type: field.type,
-            options: field.options // This will show the allowed values for multi-select fields
-          }))
+            options: field.options, // This will show the allowed values for multi-select fields
+          })),
         },
-        featuresFieldDetails: featuresField
+        featuresFieldDetails: featuresField,
       });
     }
 
@@ -54,7 +58,7 @@ export async function GET() {
     });
 
     const responseText = await testResponse.text();
-    
+
     return NextResponse.json({
       success: false,
       testResults: {
@@ -62,16 +66,15 @@ export async function GET() {
         statusText: testResponse.statusText,
         response: responseText,
         url: testUrl,
-        tableName: tableName
-      }
+        tableName: tableName,
+      },
     });
-
   } catch (error) {
     console.error('Test error:', error);
     return NextResponse.json(
-      { 
+      {
         error: 'Test failed',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );

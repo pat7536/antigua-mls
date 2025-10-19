@@ -81,6 +81,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       show: permissions.canSaveProperties,
     },
     {
+      name: 'Favorites Lists',
+      href: '/dashboard/favorites-lists',
+      current: pathname === '/dashboard/favorites-lists',
+      show: role === 'realtor' || role === 'admin',
+    },
+    {
       name: 'Market Data',
       href: '/dashboard/market-data',
       current: pathname === '/dashboard/market-data',

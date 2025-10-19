@@ -15,9 +15,11 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.25.4",
+    "@prisma/client": "^6.17.1",
     "autoprefixer": "^10.4.21",
     "leaflet": "^1.9.4",
     "next": "^15.3.5",
+    "prisma": "^6.17.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

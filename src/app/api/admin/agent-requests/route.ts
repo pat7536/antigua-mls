@@ -22,10 +22,10 @@ export async function GET() {
   try {
     // Verify user is authenticated and is admin
     const { userId } = await auth.protect();
-    
+
     const user = await clerkClient.users.getUser(userId);
     const userRole = user.unsafeMetadata?.role as string;
-    
+
     if (userRole !== 'admin') {
       return NextResponse.json(
         { error: 'Unauthorized - Admin access required' },
@@ -47,7 +47,7 @@ export async function GET() {
     const airtableUrl = `https://api.airtable.com/v0/${baseId}/AgentRequests`;
     const response = await fetch(airtableUrl, {
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
     });
@@ -80,7 +80,6 @@ export async function GET() {
       success: true,
       agentRequests,
     });
-
   } catch (error) {
     console.error('Error fetching agent requests:', error);
     return NextResponse.json(

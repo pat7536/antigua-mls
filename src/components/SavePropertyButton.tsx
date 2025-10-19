@@ -20,7 +20,10 @@ export default function SavePropertyButton({
 
   const isPropertySaved = isSaved(property.id);
 
-  const toggleSave = async () => {
+  const toggleSave = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     if (!isSignedIn || !permissions.canSaveProperties) {
       return;
     }

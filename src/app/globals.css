@@ -235,7 +235,9 @@ body {
   border: 2px solid #e5e7eb;
   border-radius: 8px;
   font-size: 0.95rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
   background: white;
 }
 
@@ -296,28 +298,28 @@ body {
     margin: 16px;
     border-radius: 8px;
   }
-  
+
   .form-header {
     padding: 24px 24px 20px;
   }
-  
+
   .form-header h2 {
     font-size: 1.5rem;
   }
-  
+
   .form {
     padding: 24px 20px;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
     gap: 0;
   }
-  
+
   .form-actions {
     flex-direction: column;
   }
-  
+
   .form-actions .btn {
     width: 100%;
   }

@@ -17,8 +17,10 @@ export default function RoleSelector() {
           Current role: <span className="font-medium capitalize">{role}</span>
         </p>
         <p className="text-sm text-gray-500">
-          {role === 'viewer' && 'You can browse properties and request to become an agent.'}
-          {role === 'agent' && 'You have access to save properties and view market data.'}
+          {role === 'viewer' &&
+            'You can browse properties and request to become an agent.'}
+          {role === 'agent' &&
+            'You have access to save properties and view market data.'}
         </p>
       </div>
     );

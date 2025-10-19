@@ -31,7 +31,7 @@ export function UserRoleProvider({ children }: UserRoleProviderProps) {
       // Check if this is the admin user
       const userEmail = user.primaryEmailAddress?.emailAddress;
       const isAdmin = userEmail === 'pat7536@gmail.com';
-      
+
       if (isAdmin) {
         // Automatically set admin role for the admin user
         if (user.unsafeMetadata?.role !== 'admin') {

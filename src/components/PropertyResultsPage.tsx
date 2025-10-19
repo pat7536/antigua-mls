@@ -22,15 +22,14 @@ interface PropertyResultsPageProps {
   propertyType: PropertyType;
 }
 
-function PropertyResultsPageInner({
-  propertyType,
-}: PropertyResultsPageProps) {
+function PropertyResultsPageInner({ propertyType }: PropertyResultsPageProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
+
   const [properties, setProperties] = useState<Property[]>([]);
   const [allProperties, setAllProperties] = useState<Property[]>([]);
-  const [allPropertiesLoaded, setAllPropertiesLoaded] = useState<boolean>(false);
+  const [allPropertiesLoaded, setAllPropertiesLoaded] =
+    useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -46,7 +45,8 @@ function PropertyResultsPageInner({
   }));
 
   // API endpoint based on property type
-  const apiEndpoint = propertyType === 'residential' ? '/api/properties' : '/api/commercial';
+  const apiEndpoint =
+    propertyType === 'residential' ? '/api/properties' : '/api/commercial';
 
   const fetchProperties = async (
     page: number = 1,
@@ -88,7 +88,8 @@ function PropertyResultsPageInner({
   const fetchAllProperties = async () => {
     try {
       const response = await fetch(`${apiEndpoint}?all=true`);
-      if (!response.ok) throw new Error(`Failed to fetch all ${propertyType} properties`);
+      if (!response.ok)
+        throw new Error(`Failed to fetch all ${propertyType} properties`);
 
       const data: PropertiesApiResponse = await response.json();
       setAllProperties(data.properties);
@@ -120,7 +121,7 @@ function PropertyResultsPageInner({
     Object.entries(newFilters).forEach(([key, val]) => {
       if (val) params.set(key, val);
     });
-    
+
     const queryString = params.toString();
     const newUrl = `/${propertyType}${queryString ? `?${queryString}` : ''}`;
     router.replace(newUrl, { scroll: false });
@@ -132,11 +133,10 @@ function PropertyResultsPageInner({
       priceRange: '',
       location: '',
     });
-    
+
     // Update URL to remove filters
     router.replace(`/${propertyType}`, { scroll: false });
   };
-
 
   // Following C-4: Using simple, composable, testable functions
   const filteredProperties = useMemo(() => {
@@ -191,8 +191,10 @@ function PropertyResultsPageInner({
     return <ErrorMessage message={error} onRetry={fetchProperties} />;
   }
 
-  const propertyTypeLabel = propertyType === 'residential' ? 'Residential' : 'Commercial';
-  const otherTypeLabel = propertyType === 'residential' ? 'Commercial' : 'Residential';
+  const propertyTypeLabel =
+    propertyType === 'residential' ? 'Residential' : 'Commercial';
+  const otherTypeLabel =
+    propertyType === 'residential' ? 'Commercial' : 'Residential';
 
   return (
     <div>
@@ -240,14 +242,14 @@ function PropertyResultsPageInner({
               </svg>
               <h2>No {propertyType} properties found</h2>
               <p>
-                Try adjusting your filters or check back later for new {propertyType} listings
+                Try adjusting your filters or check back later for new{' '}
+                {propertyType} listings
               </p>
             </div>
           ) : (
             <>
               <div className="results-count">
-                {filteredProperties.length}{' '}
-                {propertyTypeLabel}{' '}
+                {filteredProperties.length} {propertyTypeLabel}{' '}
                 {filteredProperties.length === 1 ? 'Property' : 'Properties'}{' '}
                 Found
                 {isFiltering && (
@@ -315,7 +317,8 @@ function PropertyResultsPageInner({
                     color: '#1e40af',
                   }}
                 >
-                  💡 Showing all matching {propertyType} properties from {total} total listings
+                  💡 Showing all matching {propertyType} properties from {total}{' '}
+                  total listings
                 </div>
               )}
             </>

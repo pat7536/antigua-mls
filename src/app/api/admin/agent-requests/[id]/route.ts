@@ -17,10 +17,10 @@ export async function PATCH(
   try {
     // Verify user is authenticated and is admin
     const { userId: adminUserId } = await auth.protect();
-    
+
     const adminUser = await clerkClient.users.getUser(adminUserId);
     const adminRole = adminUser.unsafeMetadata?.role as string;
-    
+
     if (adminRole !== 'admin') {
       return NextResponse.json(
         { error: 'Unauthorized - Admin access required' },
@@ -52,7 +52,7 @@ export async function PATCH(
     const getUrl = `https://api.airtable.com/v0/${baseId}/AgentRequests/${recordId}`;
     const getResponse = await fetch(getUrl, {
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
     });
@@ -77,16 +77,16 @@ export async function PATCH(
     // Update the status in Airtable
     const newStatus = action === 'approve' ? 'Approved' : 'Rejected';
     const airtableUrl = `https://api.airtable.com/v0/${baseId}/AgentRequests/${recordId}`;
-    
+
     const airtableResponse = await fetch(airtableUrl, {
       method: 'PATCH',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         fields: {
-          'Status': newStatus,
+          Status: newStatus,
         },
       }),
     });
@@ -113,7 +113,8 @@ export async function PATCH(
         // Still return success since Airtable was updated, but log the issue
         return NextResponse.json({
           success: true,
-          message: 'Agent request approved in Airtable, but failed to update user role. Please update manually.',
+          message:
+            'Agent request approved in Airtable, but failed to update user role. Please update manually.',
           status: newStatus,
         });
       }
@@ -121,12 +122,12 @@ export async function PATCH(
 
     return NextResponse.json({
       success: true,
-      message: action === 'approve' 
-        ? 'Agent request approved and user role updated to agent'
-        : 'Agent request rejected',
+      message:
+        action === 'approve'
+          ? 'Agent request approved and user role updated to agent'
+          : 'Agent request rejected',
       status: newStatus,
     });
-
   } catch (error) {
     console.error('Error processing agent request:', error);
     return NextResponse.json(

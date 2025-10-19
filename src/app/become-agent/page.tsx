@@ -39,7 +39,9 @@ export default function BecomeAgentPage() {
             <div className="text-center">
               <h1>Access Denied</h1>
               <p>This page is only accessible to users with viewer role.</p>
-              <p>Current role: <strong>{role}</strong></p>
+              <p>
+                Current role: <strong>{role}</strong>
+              </p>
               <div style={{ marginTop: '20px' }}>
                 <Link href="/" className="btn btn-primary">
                   Back to Home
@@ -66,43 +68,54 @@ export default function BecomeAgentPage() {
         <Header />
         <main className="main">
           <div className="container">
-            <div className="success-message" style={{
-              maxWidth: '600px',
-              margin: '0 auto',
-              background: 'white',
-              borderRadius: '12px',
-              padding: '48px 32px',
-              textAlign: 'center',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
-            }}>
-              <div style={{
-                width: '80px',
-                height: '80px',
-                background: '#10b981',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 24px',
-                fontSize: '2rem',
-              }}>
+            <div
+              className="success-message"
+              style={{
+                maxWidth: '600px',
+                margin: '0 auto',
+                background: 'white',
+                borderRadius: '12px',
+                padding: '48px 32px',
+                textAlign: 'center',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
+              }}
+            >
+              <div
+                style={{
+                  width: '80px',
+                  height: '80px',
+                  background: '#10b981',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 24px',
+                  fontSize: '2rem',
+                }}
+              >
                 ✓
               </div>
-              <h2 style={{
-                fontSize: '1.75rem',
-                fontWeight: '700',
-                color: '#1f2937',
-                marginBottom: '16px',
-              }}>
+              <h2
+                style={{
+                  fontSize: '1.75rem',
+                  fontWeight: '700',
+                  color: '#1f2937',
+                  marginBottom: '16px',
+                }}
+              >
                 Application Submitted!
               </h2>
-              <p style={{
-                fontSize: '1.1rem',
-                color: '#6b7280',
-                lineHeight: '1.6',
-                marginBottom: '32px',
-              }}>
-                Thanks for your request! Our team will review your agent application and get back to you shortly. You'll receive an email confirmation once your application has been processed.
+              <p
+                style={{
+                  fontSize: '1.1rem',
+                  color: '#6b7280',
+                  lineHeight: '1.6',
+                  marginBottom: '32px',
+                }}
+              >
+                Thanks for your request! Our team will review your agent
+                application and get back to you shortly. You'll receive an email
+                confirmation once your application has been processed.
               </p>
               <button
                 onClick={handleBackToHome}

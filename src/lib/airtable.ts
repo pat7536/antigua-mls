@@ -116,19 +116,25 @@ async function fetchPropertiesFromTable(
   };
 }
 
-export async function getResidentialProperties(params: PropertyQueryParams = {}) {
+export async function getResidentialProperties(
+  params: PropertyQueryParams = {}
+) {
   const apiKey = process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
   const tableName = process.env.AIRTABLE_TABLE_NAME;
 
   if (!apiKey || !baseId || !tableName) {
-    throw new Error('Missing Airtable configuration for residential properties');
+    throw new Error(
+      'Missing Airtable configuration for residential properties'
+    );
   }
 
   return fetchPropertiesFromTable({ apiKey, baseId, tableName }, params);
 }
 
-export async function getCommercialProperties(params: PropertyQueryParams = {}) {
+export async function getCommercialProperties(
+  params: PropertyQueryParams = {}
+) {
   const apiKey = process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
   const tableName = process.env.AIRTABLE_COMMERCIAL_TABLE_NAME;
