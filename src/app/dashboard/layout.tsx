@@ -84,7 +84,10 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       name: 'Favorites Lists',
       href: '/dashboard/favorites-lists',
       current: pathname === '/dashboard/favorites-lists',
-      show: role === 'realtor' || role === 'admin',
+      show:
+        role?.toLowerCase() === 'realtor' ||
+        role?.toLowerCase() === 'admin' ||
+        role?.toLowerCase() === 'agent',
     },
     {
       name: 'Market Data',

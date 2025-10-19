@@ -17,8 +17,13 @@ export default function AddToListButton({ propertyId }: AddToListButtonProps) {
   const [loading, setLoading] = useState(false);
   const [selectedNote, setSelectedNote] = useState('');
 
-  // Only show for realtors
-  if (!isSignedIn || (role !== 'realtor' && role !== 'admin')) {
+  // Only show for realtors/agents
+  if (
+    !isSignedIn ||
+    (role?.toLowerCase() !== 'realtor' &&
+      role?.toLowerCase() !== 'admin' &&
+      role?.toLowerCase() !== 'agent')
+  ) {
     return null;
   }
 
