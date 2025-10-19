@@ -8,7 +8,8 @@ type Props = {
 };
 
 async function getSharedList(shareUuid: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 
+                  (process.env.NODE_ENV === 'production' ? 'https://www.antigua-mls.com' : 'http://localhost:3000');
 
   try {
     const response = await fetch(`${baseUrl}/api/public/lists/${shareUuid}`, {
