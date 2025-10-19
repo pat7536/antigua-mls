@@ -25,7 +25,10 @@ export async function GET() {
   } catch (error) {
     console.error('Error fetching favorites lists:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch favorites lists' },
+      { 
+        error: 'Failed to fetch favorites lists',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     );
   }
@@ -64,7 +67,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error creating favorites list:', error);
     return NextResponse.json(
-      { error: 'Failed to create favorites list' },
+      { 
+        error: 'Failed to create favorites list',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     );
   }
