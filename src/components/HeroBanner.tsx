@@ -17,6 +17,15 @@ export default function HeroBanner() {
 
       {/* Fallback background if image doesn't load */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-400 -z-10"></div>
+
+      {/* Trusted website badge */}
+      <div className="absolute top-4 left-4 z-10">
+        <img
+          src="/badge.png"
+          alt="Trusted Website Badge"
+          className="h-16 w-auto sm:h-20 md:h-24 lg:h-28"
+        />
+      </div>
     </div>
   );
 }
