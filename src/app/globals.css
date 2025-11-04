@@ -536,3 +536,13 @@ body {
     margin-bottom: 16px;
   }
 }
+
+/* ChatKit Styles */
+openai-chatkit {
+  --chatkit-primary-color: #009688;
+  --chatkit-font-family: "Poppins", sans-serif;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  display: block !important;
+}

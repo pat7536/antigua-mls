@@ -81,7 +81,7 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-4">
             <SignedOut>
               <SignInButton mode="modal">
-                <button className="btn text-base px-4 py-2">Sign In</button>
+                <button className="btn text-base px-4 py-2">Agent Sign In</button>
               </SignInButton>
             </SignedOut>
 
@@ -318,7 +318,7 @@ export default function Header() {
             <SignedOut>
               <SignInButton mode="modal">
                 <button className="block w-full text-left btn text-base px-4 py-2">
-                  Sign In
+                  Agent Sign In
                 </button>
               </SignInButton>
             </SignedOut>

@@ -3,6 +3,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { SavedPropertiesProvider } from '@/contexts/SavedPropertiesContext';
 import { UserRoleProvider } from '@/contexts/UserRoleContext';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import ChatKitWidget from '@/components/ChatKitWidget';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <body>
               <GoogleAnalytics gaId="G-55VV3FDGJJ" />
               {children}
+              <ChatKitWidget />
             </body>
           </html>
         </SavedPropertiesProvider>
