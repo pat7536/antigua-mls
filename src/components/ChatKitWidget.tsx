@@ -7,6 +7,23 @@ export default function ChatKitWidget() {
   const [isMinimized, setIsMinimized] = useState(true);
 
   useEffect(() => {
+    // Listen for custom event to open chat widget
+    const handleOpenChat = () => {
+      setIsMinimized(false);
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('openWinstonChat', handleOpenChat);
+    }
+
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('openWinstonChat', handleOpenChat);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     const configureChatKit = () => {
       const chatKitElement = document.querySelector('openai-chatkit') as any;
       if (chatKitElement && !isMinimized) {

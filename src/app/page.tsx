@@ -8,6 +8,7 @@ import FilterBar from '../components/FilterBar';
 import SimpleMap from '../components/SimpleMap';
 import Header from '../components/Header';
 import HeroBanner from '../components/HeroBanner';
+import WinstonIntroModal from '../components/WinstonIntroModal';
 import { applyPropertyFilters } from '@/lib/filters';
 import type {
   Property,
@@ -164,6 +165,7 @@ export default function Home() {
     <div>
       <Header />
       <HeroBanner />
+      <WinstonIntroModal />
 
       <main className="main">
         <div className="container">

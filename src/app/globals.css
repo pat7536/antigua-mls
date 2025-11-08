@@ -546,3 +546,29 @@ openai-chatkit {
   border: none !important;
   display: block !important;
 }
+
+/* Winston Modal Responsive Styles */
+@media (max-width: 640px) {
+  .winston-modal {
+    margin: 1rem;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .winston-modal .p-6 {
+    padding: 1.25rem;
+  }
+  
+  .winston-modal h2 {
+    font-size: 1.125rem;
+  }
+}
+
+/* Ensure maps don't interfere with high z-index modals */
+.leaflet-container {
+  z-index: 1;
+}
+
+.leaflet-control-container {
+  z-index: 1000;
+}
