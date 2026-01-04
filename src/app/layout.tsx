@@ -4,6 +4,7 @@ import { SavedPropertiesProvider } from '@/contexts/SavedPropertiesContext';
 import { UserRoleProvider } from '@/contexts/UserRoleContext';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import ChatKitWidget from '@/components/ChatKitWidget';
+import Footer from '@/components/Footer';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -28,7 +29,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <html lang="en">
             <body>
               <GoogleAnalytics gaId="G-55VV3FDGJJ" />
-              {children}
+              <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ flex: 1 }}>
+                  {children}
+                </div>
+                <Footer />
+              </div>
               <ChatKitWidget />
             </body>
           </html>

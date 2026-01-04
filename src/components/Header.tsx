@@ -242,6 +242,13 @@ export default function Header() {
                       Agent Guide
                     </a>
                     <div className="border-t border-gray-200 mt-1 pt-1">
+                      <Link
+                        href="/legal-disclaimer"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                        onClick={() => setResourcesDropdownOpen(false)}
+                      >
+                        Legal Disclaimer
+                      </Link>
                       <a
                         href="mailto:info@antigua-mls.com"
                         className="block px-4 py-2 text-sm text-blue-600 hover:bg-blue-50 transition-colors"
@@ -415,6 +422,13 @@ export default function Header() {
                 >
                   Agent Guide
                 </a>
+                <Link
+                  href="/legal-disclaimer"
+                  className="block text-gray-600 hover:text-gray-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Legal Disclaimer
+                </Link>
                 <a
                   href="mailto:info@antigua-mls.com"
                   className="block text-blue-600 hover:text-blue-800 font-medium transition-colors text-base py-2 px-4 hover:bg-gray-50 rounded"
