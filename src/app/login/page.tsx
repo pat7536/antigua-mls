@@ -3,6 +3,8 @@
 import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
+export const dynamic = 'force-dynamic';
+
 function LoginForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -167,5 +169,27 @@ function LoginForm() {
       </div>
     </div>
   );
-}// Build fix commit Fri  9 Jan 2026 06:59:16 EST
-// Fixed Fri  9 Jan 2026 07:01:44 EST
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#f9fafb'
+      }}>
+        <div style={{
+          fontSize: '1.125rem',
+          color: '#6b7280'
+        }}>
+          Loading...
+        </div>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
+  );
+}

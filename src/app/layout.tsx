@@ -12,12 +12,7 @@ export const metadata: Metadata = {
   description: 'Real Estate Listings in Antigua',
 };
 
-export function generateViewport() {
-  return {
-    width: 'device-width',
-    initialScale: 1,
-  };
-}
+// Viewport removed to fix Next.js 15 build issues with client components
 
 type RootLayoutProps = {
   children: React.ReactNode;
